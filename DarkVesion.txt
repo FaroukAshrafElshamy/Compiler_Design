@@ -1,0 +1,45 @@
+fn (T) DarkVesion()
+{
+	// variable
+
+	(i) name = value!
+	(f) name = value!
+	(s) name = value!
+	(b) name = value!
+	
+	// List
+
+	(l) name = []!
+
+	// if condition
+
+	lo (condition) {}!
+	lo mesh (condition) {}!
+	mesh {}!
+
+	// Comment
+
+	$$
+	$$$
+
+	// Loop
+
+	floop ((type) varname = start! varname < End! varname++) { }!
+
+	floop ((type) varname in variable) { }!
+
+	wloop (condition) { }!
+
+	// Operations
+
+	++, --, ==
+
+	// Functions
+	
+	fn(T) name() { }!
+
+	// Print
+
+	shout()!
+			
+}

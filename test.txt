@@ -1,0 +1,7 @@
+
+
+(int) num = 7!
+
+floop ((int) i! 0! num){
+    shout(i)!
+}
