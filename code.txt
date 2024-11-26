@@ -13,7 +13,7 @@ floop (i=0, i < num, i++){
 lo (num > 7) {
 	atl3bra("the number is larger than 7");
 };
-lo mesh (num < 7) {
+lomesh (num < 7) {
 	atl3bra("the number is less than 7");
 };
 mesh {
