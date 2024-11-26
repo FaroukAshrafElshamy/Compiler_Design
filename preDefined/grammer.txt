@@ -1,26 +1,34 @@
-<program> ::= <statement>*
-<statement> ::= <declaration> | <function_definition> | <assignment> | <expression> | <control_structure>
-<declaration> ::= "gimme" <identifier> "=" <expression> ";"
-<function_definition> ::= "howto" <identifier> "(" <parameter_list> ")" "->" <type> ":" <block> "end;"
-<parameter_list> ::= <parameter> | <parameter> "," <parameter_list>
-<parameter> ::= <identifier> <type>
-<block> ::= <statement>*
-<assignment> ::= <identifier> "=" <expression> ";"
-<expression> ::= <literal> | <identifier> | <function_call> | <expression> <operator> <expression>
-<function_call> ::= "call" <identifier> "(" <argument_list> ")"
-<argument_list> ::= <expression> | <expression> "," <argument_list>
-<literal> ::= <number> | <string> | <boolean>
-<number> ::= <digit>+ ("." <digit>+)?
-<string> ::= "\"" <any_character>* "\""
-<boolean> ::= "true" | "false"
-<operator> ::= "+" | "-" | "*" | "/" | "==" | "!=" | "<" | ">" | "<=" | ">="
-<control_structure> ::= <if_statement> | <while_loop> | <repeat_loop>
-<if_statement> ::= "maybe" "(" <expression> ")" ":" <block> "else" ":" <block> "end;"
-<while_loop> ::= "while" "(" <expression> ")" ":" <block> "end;"
-<repeat_loop> ::= "repeat" "(" <expression> ")" ":" <block> "end;"
-<identifier> ::= <letter> (<letter> | <digit>)*
-<type> ::= "num" | "txt" | "bool" | "fun" | "int" | "float" | "string" | "function"
-<letter> ::= "a".."z" | "A".."Z" | "_"
-<digit> ::= "0".."9"
-<any_character> ::= <letter> | <digit> | <punctuation> | " " | "\t" | "\n"
-<punctuation> ::= "." | "," | ";" | ":" | "()" | "{}"
+<function_definition> ::= "fn" <identifier> "(" ")" "{" 
+                         <statement> ";"
+                        "}"
+
+<statement> ::= <variable_declaration>
+            | <condition_statement>
+            | <loop_statement>
+            | <operation>
+            | <print_statement>
+
+<variable_declaration> ::= <identifier> "=" <expression> ";"
+
+<condition_statement> ::= "lo" "(" <condition> ")" "{" <statement> "}" ";"
+                      | "lo" "mesh" "(" <condition> ")" "{" <statement> "}" ";"
+                      | "mesh" "{" <statement> "}" ";"
+
+<condition> ::= <expression> <comparison_operator> <expression>
+<comparison_operator> ::= "=="
+
+<loop_statement> ::= "floop" "( <identifier> "=" <digit> "," <identifier> <comparison_operator> <digit> "," <identifier> "++" ")" "{" 
+                    <statement> ";" 
+                   "}" ";"
+
+<operation> ::= <identifier> ("++" | "--" | "=") <expression>
+
+<print_statement> ::= "atl3bra" "(" <string_literal> ")" ";"
+
+<expression> ::= <identifier> | <literal>
+<literal> ::= <number> | <string_literal>
+<string_literal> ::= "\"" character* "\""
+
+<identifier> ::= <letter> { <letter> | <digit> | "_" }
+<letter> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
+<digit> ::= "0" | "1" | ... | "9"
