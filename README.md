@@ -4,4 +4,6 @@ Compiler design project
 
 Countributers:
     -Khaled abdo
-    -`Farouk Ashraf`
+    -Farouk ahraf
+    -Omar shetwey
+    -Mohammed mostafa
