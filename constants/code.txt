@@ -1,0 +1,23 @@
+fn good()
+{
+	fprint("good code");
+};
+
+
+num = 7;
+
+floop (i=0, i < num, i++){
+	fprint(i);
+};
+
+lo (num > 7) {
+	fprint("the number is larger than 7");
+};
+lomesh (num < 7) {
+	fprint("the number is less than 7");
+};
+mesh {
+	fprint("the number is equal 7");
+};
+
+good();

@@ -4,7 +4,7 @@ from colorama import Fore
 
 # Define token categories with regular expressions 
 TOKEN_SPECIFICATION = [
-    ('KEYWORD', r'\b(fn|lo|lomesh|mesh|floop|atl3bra)\b'),  # Keywords
+    ('KEYWORD', r'\b(fn|lo|lomesh|mesh|floop|fprint)\b'),  # Keywords
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),       # Identifiers
     ('NUMBER', r'\b\d+\b'),                          # Numbers
     ('STRING', r'"[^"]*"'),                          # Strings
