@@ -1,5 +1,6 @@
 
 import re
+from colorama import Fore, Style, init
 
 # Define token categories with regular expressions 
 TOKEN_SPECIFICATION = [
@@ -44,5 +45,10 @@ if __name__ == '__main__':
     # Read code from the file
     code = read_file(file_path)
     tokens = lex(code)
-    for token in tokens:
-        print(token)
+    # Display tokens and their count
+    print("Tokens:")
+    print(f"Type      Lexeme")
+    for token_type, lexeme in tokens:
+        print(f"{Fore.MAGENTA}{token_type}{Fore.RESET}    {Fore.YELLOW}{lexeme}{Fore.RESET}")
+    
+    print(f"\nTotal number of tokens: {len(tokens)}")
