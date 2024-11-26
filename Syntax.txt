@@ -1,23 +1,22 @@
 // -----------Functions--------------
-fn (T) good()
+fn good()
 {
-	atl3bra("good code")!
+	atl3bra("good code");
 }
 
 
-
 // -----------variable----------
-name = value!
+name = value;
 
 
 // ----------if condition-----------
-lo (condition) {}!
-lo mesh (condition) {}!
-mesh {}!
+lo (condition) {};
+lomesh (condition) {};
+mesh {};
 
 
 // ----------------Loop--------
-floop ((type) varname = start! varname < End! varname++) { }!
+floop (varname = value, varname < value, varname++) { };
 
 
 // -------Operations-------------
@@ -25,4 +24,4 @@ floop ((type) varname = start! varname < End! varname++) { }!
 
 
 // ---------Print----------------
-atl3bra()!
+atl3bra();

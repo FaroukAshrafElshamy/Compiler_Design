@@ -1,6 +1,5 @@
-// Functions
-<function_definition> ::= "fn" "(" "T" ")" <identifier> "(" ")" "{" 
-                         <statement> 
+<function_definition> ::= "fn" <identifier> "(" ")" "{" 
+                         <statement> ";"
                         "}"
 
 <statement> ::= <variable_declaration>
@@ -9,34 +8,27 @@
             | <operation>
             | <print_statement>
 
-// Variables
-<variable_declaration> ::= <identifier> "=" <expression> "!"
+<variable_declaration> ::= <identifier> "=" <expression> ";"
 
-// Conditions
-<condition_statement> ::= "lo" "(" <condition> ")" "{" <statement> "}" "!" 
-                      | "lo" "mesh" "(" <condition> ")" "{" <statement> "}" "!" 
-                      | "mesh" "{" <statement> "}" "!"
+<condition_statement> ::= "lo" "(" <condition> ")" "{" <statement> "}" ";"
+                      | "lo" "mesh" "(" <condition> ")" "{" <statement> "}" ";"
+                      | "mesh" "{" <statement> "}" ";"
 
 <condition> ::= <expression> <comparison_operator> <expression>
 <comparison_operator> ::= "=="
 
-// Loops
-<loop_statement> ::= "floop" "((" "type" ")" <identifier> "=" digit "!" <identifier> <comparison_operator> <digit> "!" <identifier> "++" ")" "{" 
-                    <statement>  
-                   "}" "!"
+<loop_statement> ::= "floop" "( <identifier> "=" <digit> "," <identifier> <comparison_operator> <digit> "," <identifier> "++" ")" "{" 
+                    <statement> ";" 
+                   "}" ";"
 
-// Operations
 <operation> ::= <identifier> ("++" | "--" | "=") <expression>
 
-// Printing
-<print_statement> ::= "atl3bra" "(" <string_literal> ")" "!"
+<print_statement> ::= "atl3bra" "(" <string_literal> ")" ";"
 
-// Expressions
 <expression> ::= <identifier> | <literal>
 <literal> ::= <number> | <string_literal>
 <string_literal> ::= "\"" character* "\""
 
-// Identifiers
 <identifier> ::= <letter> { <letter> | <digit> | "_" }
 <letter> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
 <digit> ::= "0" | "1" | ... | "9"
