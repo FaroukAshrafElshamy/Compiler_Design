@@ -1,0 +1,32 @@
+// -----------Functions--------------
+fn (T) good()
+{
+	atl3bra("good code")!
+}
+
+
+// ------main function---------
+fn (T) DarkVesion()
+{
+	// -----------variable----------
+	(I) name = value!
+	
+
+	// ----------if condition-----------
+	lo (condition) {}!
+	lo mesh (condition) {}!
+	mesh {}!
+
+
+	// ----------------Loop--------
+	floop ((type) varname = start! varname < End! varname++) { }!
+
+
+	// -------Operations-------------
+	++, --, ==, +, -, *,/,=
+
+
+	// ---------Print----------------
+    atl3bra()!
+			
+}
