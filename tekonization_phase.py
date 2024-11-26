@@ -13,7 +13,6 @@ TOKEN_SPECIFICATION = [
     ('DELIMITER', r'[{}()]'),                        # Braces and parentheses
     ('SEPARATOR', r'[,;]'),                          # Separator
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
-    ('MISMATCH', r'.'),                              # Any other character
 ]
 
 # Compile regexes for token matching
