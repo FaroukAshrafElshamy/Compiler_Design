@@ -17,9 +17,13 @@
 <condition> ::= <expression> <comparison_operator> <expression>
 <comparison_operator> ::= "=="
 
-<loop_statement> ::= "floop" "( <identifier> "=" <digit> "," <identifier> <comparison_operator> <digit> "," <identifier> "++" ")" "{" 
-                    <statement> ";" 
-                   "}" ";"
+<loop_statement> ::= "floop" "( <identifier> "=" <digit> ",
+                              " <identifier> <comparison_operator> <digit> ",
+                              " <identifier> "++" ")" 
+                            "{" 
+                                 <statement> ";" 
+                            "}" ";"
+
 
 <operation> ::= <identifier> ("++" | "--" | "=") <expression>
 
