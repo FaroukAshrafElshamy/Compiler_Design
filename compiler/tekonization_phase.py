@@ -4,13 +4,12 @@ import re
 # Define token categories with regular expressions 
 TOKEN_SPECIFICATION = [
     ('KEYWORD', r'\b(fn|lo|mesh|floop|atl3bra)\b'),  # Keywords
-    ('TYPE', r'\((i|f|s|b|l)\)'),                    # Types
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),       # Identifiers
     ('NUMBER', r'\b\d+\b'),                          # Numbers
     ('STRING', r'"[^"]*"'),                          # Strings
     ('OPERATOR', r'[+\-*/=<>!]+'),                   # Operators
     ('DELIMITER', r'[{}()]'),                        # Braces and parentheses
-    ('SEPARATOR', r'!'),                             # Separator
+    ('SEPARATOR', r'[,;]'),                             # Separator
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
     ('MISMATCH', r'.'),                              # Any other character
 ]
@@ -40,7 +39,7 @@ def read_file(file_path):
 # Main program
 if __name__ == '__main__':
     # Specify the file containing the code
-    file_path = 'code.txt'
+    file_path = 'preDefined/program_1.txt'
 
     # Read code from the file
     code = read_file(file_path)

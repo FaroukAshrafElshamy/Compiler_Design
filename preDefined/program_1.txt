@@ -1,26 +1,22 @@
-# Declare a variable
-gimme x = 42;
-
-# Define a function
-howto add(a num, b num) -> num(
-    giveback a + b;
-);
+fn good(){
+	atl3bra("good code");
+}
 
 
-# Call the function
-gimme result = call add(10, 32);
+num = 7;
 
-# Conditional
-maybe (result > 40)(
-    call print("Big number!");
-)else(
-    call print("Not that big!");
-);
+floop (i=0, i < num, i++){
+	atl3bra(i);
+}
 
+lo (num > 7) {
+	atl3bra("the number is larger than 7");
+};
+lomesh (num < 7) {
+	atl3bra("the number is less than 7");
+};
+mesh {
+	atl3bra("the number is equal 7");
+};
 
-# Loop
-repeat (x > 0)(
-    call print(x);
-    gimme x = x - 1;
-);
-
+good();
