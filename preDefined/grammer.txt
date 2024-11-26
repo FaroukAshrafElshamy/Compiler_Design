@@ -1,0 +1,26 @@
+<program> ::= <statement>*
+<statement> ::= <declaration> | <function_definition> | <assignment> | <expression> | <control_structure>
+<declaration> ::= "gimme" <identifier> "=" <expression> ";"
+<function_definition> ::= "howto" <identifier> "(" <parameter_list> ")" "->" <type> ":" <block> "end;"
+<parameter_list> ::= <parameter> | <parameter> "," <parameter_list>
+<parameter> ::= <identifier> <type>
+<block> ::= <statement>*
+<assignment> ::= <identifier> "=" <expression> ";"
+<expression> ::= <literal> | <identifier> | <function_call> | <expression> <operator> <expression>
+<function_call> ::= "call" <identifier> "(" <argument_list> ")"
+<argument_list> ::= <expression> | <expression> "," <argument_list>
+<literal> ::= <number> | <string> | <boolean>
+<number> ::= <digit>+ ("." <digit>+)?
+<string> ::= "\"" <any_character>* "\""
+<boolean> ::= "true" | "false"
+<operator> ::= "+" | "-" | "*" | "/" | "==" | "!=" | "<" | ">" | "<=" | ">="
+<control_structure> ::= <if_statement> | <while_loop> | <repeat_loop>
+<if_statement> ::= "maybe" "(" <expression> ")" ":" <block> "else" ":" <block> "end;"
+<while_loop> ::= "while" "(" <expression> ")" ":" <block> "end;"
+<repeat_loop> ::= "repeat" "(" <expression> ")" ":" <block> "end;"
+<identifier> ::= <letter> (<letter> | <digit>)*
+<type> ::= "num" | "txt" | "bool" | "fun" | "int" | "float" | "string" | "function"
+<letter> ::= "a".."z" | "A".."Z" | "_"
+<digit> ::= "0".."9"
+<any_character> ::= <letter> | <digit> | <punctuation> | " " | "\t" | "\n"
+<punctuation> ::= "." | "," | ";" | ":" | "()" | "{}"
