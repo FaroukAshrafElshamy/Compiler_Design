@@ -2,7 +2,7 @@
 fn good()
 {
 	atl3bra("good code");
-}
+};
 
 
 // -----------variable----------

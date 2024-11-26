@@ -1,14 +1,14 @@
 fn good()
 {
 	atl3bra("good code");
-}
+};
 
 
 num = 7;
 
-floop ((I) i=0, i < num, i++){
-	atl3bra(I);
-}
+floop (i=0, i < num, i++){
+	atl3bra(i);
+};
 
 lo (num > 7) {
 	atl3bra("the number is larger than 7");

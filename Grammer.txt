@@ -1,6 +1,6 @@
 <function_definition> ::= "fn" <identifier> "(" ")" "{" 
                          <statement> ";"
-                        "}"
+                        "}" ";"
 
 <statement> ::= <variable_declaration>
             | <condition_statement>
@@ -11,7 +11,7 @@
 <variable_declaration> ::= <identifier> "=" <expression> ";"
 
 <condition_statement> ::= "lo" "(" <condition> ")" "{" <statement> "}" ";"
-                      | "lo" "mesh" "(" <condition> ")" "{" <statement> "}" ";"
+                      | "lomesh" "(" <condition> ")" "{" <statement> "}" ";"
                       | "mesh" "{" <statement> "}" ";"
 
 <condition> ::= <expression> <comparison_operator> <expression>
