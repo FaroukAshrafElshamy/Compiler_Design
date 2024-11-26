@@ -5,28 +5,24 @@ fn (T) good()
 }
 
 
-// ------main function---------
-fn (T) DarkVesion()
-{
-	// -----------variable----------
-	(I) name = value!
-	
 
-	// ----------if condition-----------
-	lo (condition) {}!
-	lo mesh (condition) {}!
-	mesh {}!
+// -----------variable----------
+name = value!
 
 
-	// ----------------Loop--------
-	floop ((type) varname = start! varname < End! varname++) { }!
+// ----------if condition-----------
+lo (condition) {}!
+lo mesh (condition) {}!
+mesh {}!
 
 
-	// -------Operations-------------
-	++, --, ==, +, -, *,/,=
+// ----------------Loop--------
+floop ((type) varname = start! varname < End! varname++) { }!
 
 
-	// ---------Print----------------
-    atl3bra()!
-			
-}
+// -------Operations-------------
+++, --, ==, +, -, *, /, =
+
+
+// ---------Print----------------
+atl3bra()!
