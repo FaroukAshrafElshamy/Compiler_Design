@@ -9,28 +9,30 @@ TOKEN_SPECIFICATION = [
     ('NUMBER', r'\b\d+\b'),                          # Numbers
     ('STRING', r'"[^"]*"'),                          # Strings
     ('OPERATOR', r'[+\-*/=<>!]+'),                   # Operators
+    ("STRING_LITERAL", r"\".*?\""),                  # Strings
     ('DELIMITER', r'[{}()]'),                        # Braces and parentheses
-    ('SEPARATOR', r'[,;]'),                             # Separator
+    ('SEPARATOR', r'[,;]'),                          # Separator
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
     ('MISMATCH', r'.'),                              # Any other character
 ]
 
 # Compile regexes for token matching
-token_regex = '|'.join(f'(?P<{name}>{pattern})' for name, pattern in TOKEN_SPECIFICATION)
-
-def lex(code):
-    """
-    Tokenize the given code into type, token, and lexeme.
-    """
+def lexer(code):
     tokens = []
-    for match in re.finditer(token_regex, code):
-        token_type = match.lastgroup
-        lexeme = match.group(token_type)
-        if token_type == 'WHITESPACE':
-            continue  # Skip whitespace
-        elif token_type == 'MISMATCH':
-            raise SyntaxError(f'Unexpected character: {lexeme}')
-        tokens.append((token_type, lexeme))
+    pos = 0
+    while pos < len(code):
+        match = None
+        for token_type, pattern in TOKEN_SPECIFICATION:
+            regex = re.compile(pattern)
+            match = regex.match(code, pos)
+            if match:
+                lexeme = match.group(0)
+                if token_type != "WHITESPACE":  # Ignore whitespace
+                    tokens.append((token_type, lexeme))
+                pos = match.end()
+                break
+        if not match:
+            raise ValueError(f"Unknown token at position {pos}: {code[pos]}")
     return tokens
 
 def read_file(file_path):
@@ -44,11 +46,11 @@ if __name__ == '__main__':
 
     # Read code from the file
     code = read_file(file_path)
-    tokens = lex(code)
+    tokens = lexer(code)
     # Display tokens and their count
     print("Tokens:")
     print(f"Type      Lexeme")
     for token_type, lexeme in tokens:
-        print(f"{Fore.MAGENTA}{token_type}{Fore.RESET}    {Fore.YELLOW}{lexeme}{Fore.RESET}")
+        print(f"{Fore.MAGENTA}{token_type}    {Fore.YELLOW}{lexeme}{Fore.RESET}")
     
-    print(f"\nTotal number of tokens: {len(tokens)}")
+    print(f"{Fore.GREEN}\nTotal number of tokens: {Fore.RED}{len(tokens)}{Fore.RESET}")
