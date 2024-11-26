@@ -39,15 +39,15 @@ def read_file(file_path):
 # Main program
 if __name__ == '__main__':
     # Specify the file containing the code
-    file_path = 'conistants/code.txt'
+    file_path = 'constants/code.txt'
 
     # Read code from the file
     code = read_file(file_path)
     tokens = lexer(code)
     # Display tokens and their count
     print("Tokens:")
-    print(f"Type      Lexeme")
+    print(f"Type\t\tLexeme")
     for token_type, lexeme in tokens:
-        print(f"{Fore.MAGENTA}{token_type}    {Fore.YELLOW}{lexeme}{Fore.RESET}")
+        print(f"{Fore.MAGENTA}{token_type}\t{Fore.YELLOW}\t{lexeme}{Fore.RESET}")
     
     print(f"{Fore.GREEN}\nTotal number of tokens: {Fore.RED}{len(tokens)}{Fore.RESET}")
