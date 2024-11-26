@@ -1,153 +1,89 @@
-from compiler.tekonization_phase import lex
-
-
+# Parser and Interpreter
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
         self.pos = 0
-    
-    def current_token(self):
-        return self.tokens[self.pos] if self.pos < len(self.tokens) else None
-    
-    def eat(self, token_type):
-        """Consume the current token if it matches the given token type."""
-        if self.current_token() and self.current_token()[0] == token_type:
-            self.pos += 1
-        else:
-            raise SyntaxError(f'Expected {token_type}, found {self.current_token()}')
-    
+        self.ast = []
+
     def parse(self):
-        """Start parsing from the top-level."""
-        return self.program()
+        while self.pos < len(self.tokens):
+            self.ast.append(self.parse_function())
+        return self.ast
 
-    def program(self):
-        """Parse a program (a series of statements)."""
-        statements = []
-        while self.current_token():
-            stmt = self.statement()
-            if stmt:
-                statements.append(stmt)
-        return statements
+    def parse_function(self):
+        # Parse a function definition
+        self.consume("KEYWORD", "fn")
+        name = self.consume("IDENTIFIER")
+        self.consume("PUNCTUATION", "(")
+        self.consume("PUNCTUATION", ")")
+        self.consume("PUNCTUATION", "{")
+        body = []
+        while self.peek()[1] != "}":
+            body.append(self.parse_statement())
+        self.consume("PUNCTUATION", "}")
+        self.consume("PUNCTUATION", ";")
+        return {"type": "function", "name": name, "body": body}
 
-    def statement(self):
-        """Parse statements such as functions, assignments, conditionals, etc."""
-        token = self.current_token()
+    def parse_statement(self):
+        if self.peek()[0] == "KEYWORD":
+            if self.peek()[1] == "atl3bra":
+                return self.parse_print()
+        elif self.peek()[0] == "IDENTIFIER":
+            return self.parse_assignment()
+        else:
+            raise ValueError(f"Unexpected token {self.peek()}")
 
-        # Parse function definition (fn keyword)
-        if token and token[1] == 'fn':
-            return self.function_definition()
-        
-        # Parse variable assignment
-        if token and token[0] == 'IDENTIFIER':
-            return self.assignment()
-        
-        # Parse conditionals (lo keyword)
-        if token and token[1] == 'lo':
-            return self.conditional()
+    def parse_print(self):
+        self.consume("KEYWORD", "atl3bra")
+        self.consume("PUNCTUATION", "(")
+        content = self.consume("STRING_LITERAL")
+        self.consume("PUNCTUATION", ")")
+        self.consume("PUNCTUATION", ";")
+        return {"type": "print", "value": content}
 
-        # Parse loops (floop keyword)
-        if token and token[1] == 'floop':
-            return self.loop()
+    def parse_assignment(self):
+        var_name = self.consume("IDENTIFIER")
+        self.consume("OPERATOR", "=")
+        value = self.consume("NUMBER")
+        self.consume("PUNCTUATION", ";")
+        return {"type": "assignment", "name": var_name, "value": value}
 
-        # Parse print or other statements (atl3bra keyword)
-        if token and token[1] == 'atl3bra':
-            return self.print_statement()
-        
-        return None
-    
-    def function_definition(self):
-        """Parse function definitions (fn keyword)."""
-        self.eat('KEYWORD')  # Eat 'fn'
-        name = self.current_token()[1]
-        self.eat('IDENTIFIER')  # Eat function name
-        self.eat('DELIMITER')  # Eat '('
-        
-        params = self.parameters()  # Parse parameters
-        
-        self.eat('DELIMITER')  # Eat ')'
-        self.eat('DELIMITER')  # Eat '{'
-        
-        body = self.statement()  # Parse the function body
-        
-        self.eat('DELIMITER')  # Eat '}'
-        
-        return ('FUNCTION_DEF', name, params, body)
-    
-    def parameters(self):
-        """Parse function parameters."""
-        params = []
-        while self.current_token() and self.current_token()[0] == 'IDENTIFIER':
-            param = self.current_token()[1]
-            self.eat('IDENTIFIER')
-            params.append(param)
-            if self.current_token() and self.current_token()[0] == 'SEPARATOR':
-                self.eat('SEPARATOR')
-        return params
-    
-    def assignment(self):
-        """Parse variable assignment."""
-        var_name = self.current_token()[1]
-        self.eat('IDENTIFIER')
-        self.eat('OPERATOR')  # Eat '='
-        value = self.current_token()[1]
-        self.eat('NUMBER')  # Assume it's a number for simplicity
-        return ('ASSIGNMENT', var_name, value)
+    def consume(self, expected_type, expected_value=None):
+        token = self.tokens[self.pos]
+        if token[0] != expected_type or (expected_value and token[1] != expected_value):
+            raise ValueError(f"Expected {expected_type} {expected_value}, but got {token}")
+        self.pos += 1
+        return token[1]
 
-    def conditional(self):
-        """Parse conditional statements (lo keyword)."""
-        self.eat('KEYWORD')  # Eat 'lo'
-        condition = self.expression()
-        self.eat('DELIMITER')  # Eat '{'
-        body = self.statement()
-        self.eat('DELIMITER')  # Eat '}'
-        return ('CONDITIONAL', condition, body)
-    
-    def loop(self):
-        """Parse loop statements (floop keyword)."""
-        self.eat('KEYWORD')  # Eat 'floop'
-        var_name = self.current_token()[1]
-        self.eat('IDENTIFIER')  # Eat variable name
-        self.eat('OPERATOR')  # Eat '='
-        value = self.current_token()[1]
-        self.eat('NUMBER')  # Eat value
-        self.eat('OPERATOR')  # Eat '<'
-        condition = self.current_token()[1]
-        self.eat('NUMBER')  # Eat condition value
-        self.eat('OPERATOR')  # Eat '++'
-        return ('LOOP', var_name, value, condition)
-    
-    def expression(self):
-        """Parse expressions (e.g., arithmetic or variable)."""
-        if self.current_token()[0] == 'IDENTIFIER':
-            return self.current_token()[1]  # Return the variable name
-        elif self.current_token()[0] == 'NUMBER':
-            return int(self.current_token()[1])  # Return the number
-        return None
-    
-    def print_statement(self):
-        """Parse a print statement (atl3bra keyword)."""
-        self.eat('KEYWORD')  # Eat 'atl3bra'
-        self.eat('DELIMITER')  # Eat '('
-        value = self.expression()
-        self.eat('DELIMITER')  # Eat ')'
-        return ('PRINT', value)
+    def peek(self):
+        return self.tokens[self.pos]
 
-# Example of parsing the code
-code = """
-fn good(){
-    atl3bra("good code");
-}
-name = 42;
-lo (x > 0) {
-    atl3bra(x);
-}
-floop (x = 0, x < 10, x++) {
-    atl3bra(x);
-}
-"""
+class Interpreter:
+    def __init__(self, ast):
+        self.ast = ast
+        self.variables = {}
 
-tokens = lex(code)
+    def execute(self):
+        for node in self.ast:
+            if node["type"] == "function":
+                self.execute_function(node)
+
+    def execute_function(self, node):
+        for statement in node["body"]:
+            self.execute_statement(statement)
+
+    def execute_statement(self, node):
+        if node["type"] == "print":
+            print(node["value"].strip('"'))
+        elif node["type"] == "assignment":
+            self.variables[node["name"]] = int(node["value"])
+        else:
+            raise ValueError(f"Unknown statement type: {node['type']}")
+        
+
+tokens = lexer(code)
 parser = Parser(tokens)
 ast = parser.parse()
 
-print(ast)
+interpreter = Interpreter(ast)
+interpreter.execute()

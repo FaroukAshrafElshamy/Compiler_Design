@@ -27,7 +27,7 @@
 
 <operation> ::= <identifier> ("++" | "--" | "=") <expression>
 
-<print_statement> ::= "atl3bra" "(" <string_literal> ")" ";"
+<print_statement> ::= "fprint" "(" <string_literal> ")" ";"
 
 <expression> ::= <identifier> | <literal>
 <literal> ::= <number> | <string_literal>
