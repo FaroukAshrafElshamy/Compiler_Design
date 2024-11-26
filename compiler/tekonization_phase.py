@@ -41,7 +41,7 @@ def read_file(file_path):
 # Main program
 if __name__ == '__main__':
     # Specify the file containing the code
-    file_path = 'code.txt'
+    file_path = 'conistants/code.txt'
 
     # Read code from the file
     code = read_file(file_path)
