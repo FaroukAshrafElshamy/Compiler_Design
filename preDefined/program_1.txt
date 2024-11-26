@@ -1,0 +1,26 @@
+# Declare a variable
+gimme x = 42;
+
+# Define a function
+howto add(a num, b num) -> num(
+    giveback a + b;
+);
+
+
+# Call the function
+gimme result = call add(10, 32);
+
+# Conditional
+maybe (result > 40)(
+    call print("Big number!");
+)else(
+    call print("Not that big!");
+);
+
+
+# Loop
+repeat (x > 0)(
+    call print(x);
+    gimme x = x - 1;
+);
+
