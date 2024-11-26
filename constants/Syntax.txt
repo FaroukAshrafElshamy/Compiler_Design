@@ -1,7 +1,5 @@
 // -----------Functions--------------
-fn good(){
-	atl3bra("good code");
-};
+fn functionname(){};
 
 
 // -----------variable----------
@@ -23,4 +21,4 @@ floop (varname = value, varname < value, varname++) { };
 
 
 // ---------Print----------------
-atl3bra();
+fprint();
