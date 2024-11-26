@@ -1,6 +1,6 @@
 
 import re
-from colorama import Fore, Style, init
+from colorama import Fore
 
 # Define token categories with regular expressions 
 TOKEN_SPECIFICATION = [
