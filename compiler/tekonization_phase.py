@@ -7,7 +7,7 @@ TOKEN_SPECIFICATION = [
     ('KEYWORD', r'\b(lo|mesh|print)\b'),  # Keywords
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),       # Identifiers
     ('NUMBER', r'\b\d+\b'),                          # Numbers
-    ('OPERATOR', r'[+\-=<>]+'),                   # Operators
+    ('OPERATOR', r'[+\-=<>]+'),                      # Operators
     ("STRING_LITERAL", r"\".*?\""),                  # Strings
     ("PUNCTUATION", r"[{}();]"),                     # Punctuation
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
@@ -36,14 +36,12 @@ def read_file(file_path):
     with open(file_path, 'r') as file:
         return file.read()
 
-# Main program
 if __name__ == '__main__':
-    # Specify the file containing the code
     file_path = 'constants/code.txt'
 
-    # Read code from the file
     code = read_file(file_path)
     tokens = lexer(code)
+    
     # Display tokens and their count
     print("Tokens:")
     print(f"Type\t\tLexeme")
