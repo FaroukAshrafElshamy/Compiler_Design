@@ -1,37 +1,25 @@
-<function_definition> ::= "fn" <identifier> "(" ")" "{" 
-                         <statement> ";"
-                        "}" ";"
 
 <statement> ::= <variable_declaration>
             | <condition_statement>
-            | <loop_statement>
             | <operation>
             | <print_statement>
 
-<variable_declaration> ::= <identifier> "=" <expression> ";"
+<variable_declaration> ::= <identifier> "=" <expression> 
 
-<condition_statement> ::= "lo" "(" <condition> ")" "{" <statement> "}" ";"
-                      | "lomesh" "(" <condition> ")" "{" <statement> "}" ";"
-                      | "mesh" "{" <statement> "}" ";"
+<condition_statement> ::= "if" "(" <condition> ")" ":" <statement> 
+                      | "else" ":" <statement> 
 
 <condition> ::= <expression> <comparison_operator> <expression>
-<comparison_operator> ::= "=="
-
-<loop_statement> ::= "floop" "( <identifier> "=" <digit> ",
-                              " <identifier> <comparison_operator> <digit> ",
-                              " <identifier> "++" ")" 
-                            "{" 
-                                 <statement> ";" 
-                            "}" ";"
+<comparison_operator> ::= ("==" | ">" | "<")
 
 
-<operation> ::= <identifier> ("++" | "--" | "=") <expression>
+<operation> ::= <identifier> ("+" | "-" | "=") <expression>
 
-<print_statement> ::= "fprint" "(" <string_literal> ")" ";"
+<print_statement> ::= "print" "(" <string_literal> ")" 
 
 <expression> ::= <identifier> | <literal>
-<literal> ::= <number> | <string_literal>
-<string_literal> ::= "\"" character* "\""
+<literal> ::= <digit> | <string_literal>
+<string_literal> ::= "\"" <letter>* "\""
 
 <identifier> ::= <letter> { <letter> | <digit> | "_" }
 <letter> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"

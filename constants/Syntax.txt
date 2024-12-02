@@ -1,24 +1,17 @@
-// -----------Functions--------------
-fn functionname(){};
-
 
 // -----------variable----------
 name = value;
 
 
 // ----------if condition-----------
-lo (condition) {};
-lomesh (condition) {};
-mesh {};
+if (condition) :
 
-
-// ----------------Loop--------
-floop (varname = value, varname < value, varname++) { };
+else :
 
 
 // -------Operations-------------
-++, --, ==, +, -, *, /, =
+==, +, -, =
 
 
 // ---------Print----------------
-fprint();
+print();
