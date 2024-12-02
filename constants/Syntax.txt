@@ -4,12 +4,13 @@ name = value;
 
 
 // ----------if condition-----------
-lo (condition) {};
-mesh {};
+if (condition) :
+
+else :
 
 
 // -------Operations-------------
-++, --, ==, +, -, *, /, =
+==, +, -, =
 
 
 // ---------Print----------------
