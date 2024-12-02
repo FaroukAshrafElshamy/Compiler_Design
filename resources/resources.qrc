@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="Icon">
+    <file>main-menu.png</file>
+    <file>11.png</file>
+    <file>menu.png</file>
+    <file>big-data.png</file>
+    <file>compiler (1).png</file>
+    <file>compiler (2).png</file>
+    <file>power-button.png</file>
+    <file>Editor_64x.png</file>
+    <file>compiler2.png</file>
+  </qresource>
+</RCC>
