@@ -6,8 +6,8 @@
 
 <variable_declaration> ::= <identifier> "=" <expression> 
 
-<condition_statement> ::= "lo" "(" <condition> ")" ":" <statement> 
-                      | "mesh" ":" <statement> 
+<condition_statement> ::= "if" "(" <condition> ")" ":" <statement> 
+                      | "else" ":" <statement> 
 
 <condition> ::= <expression> <comparison_operator> <expression>
 <comparison_operator> ::= ("==" | ">" | "<")

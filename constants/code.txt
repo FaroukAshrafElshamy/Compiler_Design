@@ -1,9 +1,9 @@
 
-num = 7
+num = 5
 
 if (num > 7) :
 	print("the number is larger than 7")
 else: 
-	num = num + 2
+	num = 2
 	print(num)
 
