@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication,QMainWindow, QWeb
+from PySide6.QtWidgets import QApplication,QMainWindow
 # from Custom_Widgets.Widgets import *
 from PySide6.QtCore import Qt
 from ui_index3 import Ui_MainWindow
