@@ -1,10 +1,9 @@
 
-num = 7;
+num = 7
 
-lo (num > 7) {
-	print("the number is larger than 7");
-};
-mesh {
-	num ++ 2;
-	print(num);
-};
+if (num > 7) :
+	print("the number is larger than 7")
+else: 
+	num = num + 2
+	print(num)
+
