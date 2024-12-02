@@ -4,18 +4,18 @@
             | <operation>
             | <print_statement>
 
-<variable_declaration> ::= <identifier> "=" <expression> ";"
+<variable_declaration> ::= <identifier> "=" <expression> 
 
-<condition_statement> ::= "lo" "(" <condition> ")" "{" <statement> "}" ";"
-                      | "mesh" "{" <statement> "}" ";"
+<condition_statement> ::= "lo" "(" <condition> ")" ":" <statement> 
+                      | "mesh" ":" <statement> 
 
 <condition> ::= <expression> <comparison_operator> <expression>
 <comparison_operator> ::= ("==" | ">" | "<")
 
 
-<operation> ::= <identifier> ("++" | "--" | "=") <expression>
+<operation> ::= <identifier> ("+" | "-" | "=") <expression>
 
-<print_statement> ::= "print" "(" <string_literal> ")" ";"
+<print_statement> ::= "print" "(" <string_literal> ")" 
 
 <expression> ::= <identifier> | <literal>
 <literal> ::= <digit> | <string_literal>
