@@ -3,12 +3,12 @@ from colorama import Fore
 
 
 TOKEN_SPECIFICATION = [
-    ('KEYWORD', r'\b(if|else|print)\b'),             # Keywords
+    ('KEYWORD', r'\b(if|else)\b'),                   # Keywords
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),       # Identifiers
     ('NUMBER', r'\b\d+\b'),                          # Numbers
     ('OPERATOR', r'[+\-=<>]+'),                      # Operators
     ("STRING_LITERAL", r"\".*?\""),                  # Strings
-    ("PUNCTUATION", r"[{}();:]"),                    # Punctuation
+    ("PUNCTUATION", r"[():]"),                       # Punctuation
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
 ]
 
@@ -22,6 +22,7 @@ def lexer(code):
             match = regex.match(code, pos)
             if match:
                 lexeme = match.group(0)
+
                 if token_type != "WHITESPACE": 
                     tokens.append((token_type, lexeme))
                 pos = match.end()

@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
 from ui_index3 import Ui_MainWindow
 from PySide6.QtGui import QIcon
+from compiler.tokenization_phase import main
 import sys
 
 class MySideBar(QMainWindow, Ui_MainWindow):

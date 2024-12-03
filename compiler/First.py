@@ -1,23 +1,3 @@
-
-GRAMMER = {
-    "<program>": ["<statement>"],
-    "<statement>": ["<variable_declaration>", "<condition_statement>"],
-    "<variable_declaration>": ["<identifier> = <expression>"],
-    "<condition_statement>": ["if ( <condition> ) : <statement>", "else : <statement>"],
-    "<condition>": ["<expression> <comparison_operator> <expression>"],
-    "<comparison_operator>": ["==", "=!", "<", ">", "<=", ">="],
-    "<expression>": ["<identifier>", "<literal>"],
-    "<literal>": ["<digit>", "<string_literal>"],
-    "<string_literal>" : [ "\" <letter>* \""],
-    "<identifier>": ["<letter>", "<letter> <all_list>"],
-    "<all_list>": ["<letter>", "<digit>", "_"],
-    "<digit>": ["[0:9]"],
-    "<letter>": ["[a-zA-Z]"],
-}
-
-
-FIRST = {}
-
 def terminal(obj):
     return obj not in GRAMMER or obj in ["[A-Z]", "[a-z]", "[0-9]", "_"]
 
@@ -50,6 +30,23 @@ def first(obj):
                     break
     return FIRST[obj]
 
+GRAMMER = {
+    "<program>": ["<statement>"],
+    "<statement>": ["<variable_declaration>", "<condition_statement>"],
+    "<variable_declaration>": ["<identifier> = <expression>"],
+    "<condition_statement>": ["if ( <condition> ) : <statement>", "else : <statement>"],
+    "<condition>": ["<expression> <comparison_operator> <expression>"],
+    "<comparison_operator>": ["==", "=!", "<", ">", "<=", ">="],
+    "<expression>": ["<identifier>", "<literal>"],
+    "<literal>": ["<digit>", "<string_literal>"],
+    "<string_literal>" : [ "\" <letter>* \""],
+    "<identifier>": ["<letter>", "<letter> <all_list>"],
+    "<all_list>": ["<letter>", "<digit>", "_"],
+    "<digit>": ["[0:9]"],
+    "<letter>": ["[a-zA-Z]"],
+}
+
+FIRST = {}
 for non_terminal in GRAMMER:
     first(non_terminal)
 
