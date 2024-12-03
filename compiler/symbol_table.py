@@ -1,11 +1,10 @@
 
-from tokenization_phase import *
+from tokenization_phase import main
 import pandas as pd
 
 def get_the_identifiers_only():
     file_path = 'constants/code.txt'
-    code = read_file(file_path)
-    tokens = lexer(code)
+    code, tokens = main(file_path, 2)
     
     identifiers = []
     for identifier in tokens:
@@ -70,4 +69,4 @@ print(df)
 
 
 # save on the csv file
-# df.to_csv('constants/symbol_table.csv', index=False)
+df.to_csv('compiler/Output/symbol_table.csv', index=False)
