@@ -1,4 +1,4 @@
-from compiler.tokenization_phase import lexer, read_file
+from tokenization_phase import lexer, read_file
 # Parser and Interpreter
 class Parser:
     def __init__(self, tokens):
@@ -101,7 +101,7 @@ class Interpreter:
                     self.execute_statement(body_stmt)
 
         
-file_path = 'conistants/code.txt'
+file_path = 'constants/code.txt'
 
 code = read_file(file_path)
 
