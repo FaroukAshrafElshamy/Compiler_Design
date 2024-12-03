@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
-from PySide6.QtWebEngineWidgets import *
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon
 from ui_index3 import Ui_MainWindow
@@ -11,6 +10,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("CodeX")
         self.setWindowIcon(QIcon('resources/compiler(1).png'))
+        self.set_tab_size(5) # Tab Size
 
     # Connect Buttons
         self.ExplainButton.clicked.connect(self.S_Explain)
@@ -65,6 +65,10 @@ class MySideBar(QMainWindow, Ui_MainWindow):
             except Exception as e:
                 self.text_edit.setPlainText(f"Failed to save the file.\nError: {e}")
 
+    def set_tab_size(self, space_count):
+        font_metrics = self.textEdit.fontMetrics()
+        space_width = font_metrics.horizontalAdvance(' ')
+        self.textEdit.setTabStopDistance(space_width * space_count)
 
 
 if __name__ == "__main__":
