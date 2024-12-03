@@ -96,6 +96,7 @@ class Ui_MainWindow(object):
         self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_3)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(110, -1, -1, -1)
         self.label = QLabel(self.frame_3)
         self.label.setObjectName(u"label")
         font = QFont()
@@ -185,23 +186,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.HubButton)
 
-        self.frame_5 = QFrame(self.frame_4)
-        self.frame_5.setObjectName(u"frame_5")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.frame_5.sizePolicy().hasHeightForWidth())
-        self.frame_5.setSizePolicy(sizePolicy2)
-        self.frame_5.setMinimumSize(QSize(100, 0))
-        self.frame_5.setMaximumSize(QSize(150, 16777215))
-        self.frame_5.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.frame_5.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame_5.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_5 = QVBoxLayout(self.frame_5)
-        self.verticalLayout_5.setSpacing(6)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.AboutButton = QPushButton(self.frame_5)
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer)
+
+        self.AboutButton = QPushButton(self.frame_4)
         self.AboutButton.setObjectName(u"AboutButton")
         icon4 = QIcon()
         icon4.addFile(u":/icon/resources/information.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
@@ -209,15 +198,15 @@ class Ui_MainWindow(object):
         self.AboutButton.setCheckable(True)
         self.AboutButton.setAutoExclusive(True)
 
-        self.verticalLayout_5.addWidget(self.AboutButton)
+        self.verticalLayout_2.addWidget(self.AboutButton)
 
-        self.pushButton_6 = QPushButton(self.frame_5)
+        self.pushButton_6 = QPushButton(self.frame_4)
         self.pushButton_6.setObjectName(u"pushButton_6")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
-        self.pushButton_6.setSizePolicy(sizePolicy3)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
+        self.pushButton_6.setSizePolicy(sizePolicy2)
         self.pushButton_6.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         icon5 = QIcon()
         icon5.addFile(u":/icon/resources/power-button.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
@@ -225,10 +214,7 @@ class Ui_MainWindow(object):
         self.pushButton_6.setCheckable(True)
         self.pushButton_6.setAutoExclusive(True)
 
-        self.verticalLayout_5.addWidget(self.pushButton_6)
-
-
-        self.verticalLayout_2.addWidget(self.frame_5, 0, Qt.AlignmentFlag.AlignBottom)
+        self.verticalLayout_2.addWidget(self.pushButton_6)
 
 
         self.verticalLayout_4.addWidget(self.frame_4)
@@ -385,7 +371,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_6.toggled.connect(MainWindow.close)
 
-        self.Main_page.setCurrentIndex(1)
+        self.Main_page.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
