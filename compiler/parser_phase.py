@@ -35,8 +35,8 @@ class Parser:
             self.consume('KEYWORD', 'else')
             self.consume('PUNCTUATION', ':')
             falsee = self.statement()
-            return {"<if_statment>": condition, "<true>": truee, "<false>": falsee}
-        return {"<if_statment>": condition, "<true>": truee}
+            return {"<if_statment>": condition, "<true_statment>": truee, "<false_statment>": falsee}
+        return {"<if_statment>": condition, "<true_statment>": truee}
 
     def condition(self):
         left = self.expression()

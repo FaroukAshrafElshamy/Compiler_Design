@@ -37,7 +37,7 @@
             }
           }
         },
-        "<true>": {
+        "<true_statment>": {
           "<variable_declaration>": {
             "<identifier>": "x",
             "<expression>": {
@@ -45,7 +45,7 @@
             }
           }
         },
-        "<false>": {
+        "<false_statment>": {
           "<variable_declaration>": {
             "<identifier>": "num",
             "<expression>": {
