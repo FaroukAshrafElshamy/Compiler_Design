@@ -54,7 +54,7 @@ def symbolTalbe(file_path):
 
     data = [vars(symbol) for symbol in symbols]
     df = pd.DataFrame(data)
-    print(df)
+    # print(df)
 
 
     # save on the csv file
