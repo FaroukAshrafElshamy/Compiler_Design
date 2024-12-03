@@ -80,5 +80,5 @@ parse_tree = parser.parse()
 
 json_object = json.dumps(parse_tree, indent=2)
 print(json_object)
-# with open("ParseTree.json", "w") as outfile:
-#     outfile.write(json_object)
+with open("ParseTree.json", "w") as outfile:
+    outfile.write(json_object)
