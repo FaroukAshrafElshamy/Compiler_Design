@@ -1,5 +1,5 @@
 
-from tekonization_phase import *
+from compiler.tokenization_phase import *
 import pandas as pd
 
 def get_the_identifiers_only():
