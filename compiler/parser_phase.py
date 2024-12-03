@@ -1,5 +1,8 @@
 from tokenization_phase import lexer, read_file
 import json
+import networkx as nx
+import matplotlib.pyplot as plt
+from collections import defaultdict
 
 class Parser:
     def __init__(self, tokens):
@@ -82,3 +85,65 @@ json_object = json.dumps(parse_tree, indent=2)
 print(json_object)
 # with open("ParseTree.json", "w") as outfile:
 #     outfile.write(json_object)
+
+
+def json_to_tree_graph(json_data, graph=None, parent="root", level=0, level_nodes=None):
+    if graph is None:
+        graph = nx.DiGraph() 
+        level_nodes = defaultdict(list)
+
+    level_nodes[level].append(parent)
+
+    if isinstance(json_data, dict):
+        for key, value in json_data.items():
+            child_node = f"{parent}.{key}"  
+            graph.add_node(child_node, label=key)  
+            graph.add_edge(parent, child_node) 
+            json_to_tree_graph(value, graph, child_node, level + 1, level_nodes)
+
+    elif isinstance(json_data, list):
+        for index, item in enumerate(json_data):
+            child_node = f"{parent}[{index}]"  
+            graph.add_node(child_node, label=f"Item {index}")  
+            graph.add_edge(parent, child_node)  
+            json_to_tree_graph(item, graph, child_node, level + 1, level_nodes)
+  
+    else:
+        child_node = f"{parent}:{json_data}"  
+        graph.add_node(child_node, label=str(json_data)) 
+        graph.add_edge(parent, child_node)  
+        level_nodes[level + 1].append(child_node)
+
+    return graph, level_nodes
+
+def calculate_positions(level_nodes, screen_width=10):
+    positions = {}
+    max_level = max(level_nodes.keys())
+    for level, nodes in level_nodes.items():
+        num_nodes = len(nodes)
+        spacing = screen_width / (num_nodes + 1)  
+        for i, node in enumerate(nodes):
+            x = (i + 1) * spacing  
+            y = -level 
+            positions[node] = (x, y)
+    return positions
+
+def visualize_tree_centered(graph, positions):
+    labels = nx.get_node_attributes(graph, 'label') 
+
+    # Draw the graph
+    plt.figure(figsize=(12, 8))
+    nx.draw(graph, positions, with_labels=False, node_color="lightblue", node_size=2000, arrows=False)
+    nx.draw_networkx_labels(graph, positions, labels, font_size=10, font_color="black")
+    plt.title("Centered and Evenly Spaced Tree")
+    plt.show()
+
+
+
+json_obj = json.loads(json_object)
+
+tree_graph, tree_levels = json_to_tree_graph(json_obj)
+
+tree_positions = calculate_positions(tree_levels, screen_width=12)
+
+visualize_tree_centered(tree_graph, tree_positions)
