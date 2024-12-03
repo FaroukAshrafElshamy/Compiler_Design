@@ -16,10 +16,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QMainWindow, QPushButton, QSizePolicy, QStackedWidget,
-    QTextBrowser, QVBoxLayout, QWidget)
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTextBrowser, QTextEdit, QVBoxLayout,
+    QWidget)
 import resource_rc
 
 class Ui_MainWindow(object):
@@ -47,8 +47,7 @@ class Ui_MainWindow(object):
 "	border-radius:10px;\n"
 "}\n"
 "QPushButton{\n"
-"	padding:10px;\n"
-"	padding-left:18px;\n"
+"	padding:10px 10px 10px 20px;\n"
 "	background-color:#040f13;\n"
 "	border-radius:5px;\n"
 "	text-align:left;\n"
@@ -68,7 +67,7 @@ class Ui_MainWindow(object):
 "	background-color:transparent;\n"
 "}\n"
 "\n"
-"QWebEngineView{\n"
+"QWebEngineView, #textEdit{\n"
 "	background-color:transparent;\n"
 "	border-radius:10px;\n"
 "}\n"
@@ -253,15 +252,69 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.webEngineView = QWebEngineView(self.page)
-        self.webEngineView.setObjectName(u"webEngineView")
-        self.webEngineView.setStyleSheet(u"")
+        self.label_3 = QLabel(self.page)
+        self.label_3.setObjectName(u"label_3")
 
-        self.horizontalLayout_5.addWidget(self.webEngineView)
+        self.horizontalLayout_5.addWidget(self.label_3)
 
         self.Main_page.addWidget(self.page)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
+        self.verticalLayout_6 = QVBoxLayout(self.page_2)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.textEdit = QTextEdit(self.page_2)
+        self.textEdit.setObjectName(u"textEdit")
+        font1 = QFont()
+        font1.setPointSize(11)
+        self.textEdit.setFont(font1)
+        self.textEdit.setTabChangesFocus(True)
+        self.textEdit.setCursorWidth(3)
+
+        self.verticalLayout_6.addWidget(self.textEdit)
+
+        self.frame = QFrame(self.page_2)
+        self.frame.setObjectName(u"frame")
+        sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
+        self.frame.setSizePolicy(sizePolicy)
+        self.frame.setMinimumSize(QSize(0, 30))
+        self.frame.setMaximumSize(QSize(5555555, 35))
+        self.frame.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_8 = QHBoxLayout(self.frame)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer)
+
+        self.Open_file = QPushButton(self.frame)
+        self.Open_file.setObjectName(u"Open_file")
+        self.Open_file.setMinimumSize(QSize(100, 0))
+        self.Open_file.setMaximumSize(QSize(100, 16777215))
+        self.Open_file.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.Open_file.setAutoFillBackground(False)
+        icon6 = QIcon()
+        icon6.addFile(u":/icon/resources/open-folder.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.Open_file.setIcon(icon6)
+        self.Open_file.setCheckable(True)
+        self.Open_file.setAutoExclusive(False)
+
+        self.horizontalLayout_8.addWidget(self.Open_file)
+
+        self.Save_file = QPushButton(self.frame)
+        self.Save_file.setObjectName(u"Save_file")
+        self.Save_file.setMinimumSize(QSize(100, 0))
+        self.Save_file.setMaximumSize(QSize(100, 16777215))
+        icon7 = QIcon()
+        icon7.addFile(u":/icon/resources/floppy-disk.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.Save_file.setIcon(icon7)
+
+        self.horizontalLayout_8.addWidget(self.Save_file)
+
+
+        self.verticalLayout_6.addWidget(self.frame, 0, Qt.AlignmentFlag.AlignBottom)
+
         self.Main_page.addWidget(self.page_2)
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
@@ -272,9 +325,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label_2 = QLabel(self.page_4)
         self.label_2.setObjectName(u"label_2")
-        font1 = QFont()
-        font1.setPointSize(25)
-        self.label_2.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(25)
+        self.label_2.setFont(font2)
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.label_2)
@@ -313,7 +366,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_6.toggled.connect(MainWindow.close)
 
-        self.Main_page.setCurrentIndex(0)
+        self.Main_page.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -330,6 +383,10 @@ class Ui_MainWindow(object):
         self.HubButton.setText(QCoreApplication.translate("MainWindow", u" Hub", None))
         self.AboutButton.setText(QCoreApplication.translate("MainWindow", u" About", None))
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"  Exit", None))
+        self.label_3.setText("")
+        self.textEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter Your Code", None))
+        self.Open_file.setText(QCoreApplication.translate("MainWindow", u"Open File", None))
+        self.Save_file.setText(QCoreApplication.translate("MainWindow", u" Save", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Soon... The Hub", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
