@@ -5,17 +5,9 @@ OPERATOR                      =
 NUMBER                        5
 IDENTIFIER                    y
 OPERATOR                      =
-NUMBER                        6
-KEYWORD                       if
-PUNCTUATION                   (
-IDENTIFIER                    x
-OPERATOR                      >
-IDENTIFIER                    y
-PUNCTUATION                   )
-PUNCTUATION                   :
-IDENTIFIER                    print
-PUNCTUATION                   (
-STRING_LITERAL                "hello world"
-PUNCTUATION                   )
+NUMBER                        10
+IDENTIFIER                    f
+OPERATOR                      =
+STRING_LITERAL                "FarouK"
 
-Total number of tokens: 17
+Total number of tokens: 9
