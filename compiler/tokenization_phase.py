@@ -36,6 +36,12 @@ def lexer(code):
             raise ValueError(f"Unknown token at position {pos}: {code[pos]}")
     return tokens
 
+<<<<<<< HEAD:compiler/tokenization_phase.py
+=======
+def read_file(file_path):
+	with open(file_path, 'r') as file:
+		return file.read()
+>>>>>>> 5ad1fff82b097da19bb282ed6e462fb6ab0bc5c4:compiler/tekonization_phase.py
 
 if __name__ == '__main__':
     file_path = 'constants/code.txt'
