@@ -1,5 +1,7 @@
 
 num = 5
+name = "khaled"
+age = 23
 
 if (num > 7) :
 	print("the number is larger than 7")
@@ -7,3 +9,4 @@ else:
 	num = 2
 	print(num)
 
+print(name)

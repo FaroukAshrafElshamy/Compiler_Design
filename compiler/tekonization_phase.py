@@ -2,18 +2,17 @@
 import re
 from colorama import Fore
 
-# Define token categories with regular expressions 
+
 TOKEN_SPECIFICATION = [
-    ('KEYWORD', r'\b(lo|mesh|print)\b'),  # Keywords
+    ('KEYWORD', r'\b(if|else|print)\b'),             # Keywords
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),       # Identifiers
     ('NUMBER', r'\b\d+\b'),                          # Numbers
-    ('OPERATOR', r'[+\-=<>]+'),                      # Operators
     ("STRING_LITERAL", r"\".*?\""),                  # Strings
-    ("PUNCTUATION", r"[{}();]"),                     # Punctuation
+    ('OPERATOR', r'[+\-=<>]+'),                      # Operators
+    ("PUNCTUATION", r"[{}();:]"),                    # Punctuation
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
 ]
 
-# Compile regexes for token matching
 def lexer(code):
     tokens = []
     pos = 0
@@ -24,7 +23,7 @@ def lexer(code):
             match = regex.match(code, pos)
             if match:
                 lexeme = match.group(0)
-                if token_type != "WHITESPACE":  # Ignore whitespace
+                if token_type != "WHITESPACE": 
                     tokens.append((token_type, lexeme))
                 pos = match.end()
                 break
@@ -36,13 +35,15 @@ def read_file(file_path):
     with open(file_path, 'r') as file:
         return file.read()
 
+
+
 if __name__ == '__main__':
     file_path = 'constants/code.txt'
 
     code = read_file(file_path)
     tokens = lexer(code)
+
     
-    # Display tokens and their count
     print("Tokens:")
     print(f"Type\t\tLexeme")
     for token_type, lexeme in tokens:
