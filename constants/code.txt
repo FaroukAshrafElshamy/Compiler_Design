@@ -7,5 +7,5 @@ if (num > 7):
 	x = 3
 else: 
 	num = 2
-	
+
 x = 8
