@@ -38,8 +38,8 @@ class Parser:
             self.consume('KEYWORD', 'else')
             self.consume('PUNCTUATION', ':')
             falsee = self.statement()
-            return {"<if_statment>": condition, "<true>": truee, "<false>": falsee}
-        return {"<if_statment>": condition, "<true>": truee}
+            return {"<if_statment>": condition, "<true_statment>": truee, "<false_statment>": falsee}
+        return {"<if_statment>": condition, "<true_statment>": truee}
 
     def condition(self):
         left = self.expression()
@@ -51,9 +51,9 @@ class Parser:
         if self.match('IDENTIFIER'):
             return {"<identifier>": self.consume('IDENTIFIER')}
         elif self.match('NUMBER'):
-            return {"<literal>": self.consume('NUMBER')}
+            return {"<digit>": self.consume('NUMBER')}
         elif self.match('STRING_LITERAL'):
-            return {"<literal>": self.consume('STRING_LITERAL')}
+            return {"<letter>": self.consume('STRING_LITERAL')}
 
     def match(self, kind, value=None):
         if self.pos >= len(self.tokens):
