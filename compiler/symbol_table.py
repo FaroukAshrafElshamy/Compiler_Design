@@ -15,7 +15,7 @@ def get_the_identifiers_only():
     return identifiers
 
 
-def numbers_file():
+def index_the_source_code():
     lines = []
     with open('constants/code.txt', "r") as file:
             for line_content in file:
@@ -23,7 +23,7 @@ def numbers_file():
     return lines
 
 def get_line_appears(iden):
-    lines = numbers_file()
+    lines = index_the_source_code()
     lines_for_IDEN = []
     for each in lines:
         if iden in each:
