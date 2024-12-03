@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidg
 from ui_index3 import Ui_MainWindow
 from compiler.tokenization_phase import main
 from compiler.symbol_table import symbolTalbe
-from compiler.parser_phase import visulize
+from compiler.parser_phase import visulize, parser
 from PySide6.QtGui import QIcon
 from compiler.First import First
 import csv
@@ -76,6 +76,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
                     file.write(content)
                 main(file_path2, 1)
                 symbolTalbe(file_path2)
+                parser(file_path2)
             except Exception as e:
                 self.text_edit.setPlainText(f"Failed to save the file.\nError: {e}")
 
@@ -108,6 +109,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
                 self.TextOutput3.append(f"Failed to append the file.\nError: {e}")
 
     def OutputParse(self):
+        parser(file_path)
         self.TextOutput2.clear()
         output_path = "compiler/Output/ParseTree.json"
         if output_path:
