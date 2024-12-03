@@ -8,6 +8,7 @@ from compiler.First import First
 import csv
 import sys
 
+
 class MySideBar(QMainWindow, Ui_MainWindow):
     def __init__(self) -> None:
         super().__init__()
