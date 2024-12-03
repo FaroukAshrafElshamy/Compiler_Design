@@ -1,6 +1,7 @@
-from PySide6.QtWidgets import QApplication,QMainWindow
-# from Custom_Widgets.Widgets import *
+from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWebEngineWidgets import *
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QIcon
 from ui_index3 import Ui_MainWindow
 import sys
 
@@ -9,7 +10,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("CodeX")
-        # loadJsonStyle(self, self.ui)
+        self.setWindowIcon(QIcon('resources/compiler(1).png'))
 
     # Connect Buttons
         self.ExplainButton.clicked.connect(self.S_Explain)
@@ -17,9 +18,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.OutputButton.clicked.connect(self.S_Output)
         self.HubButton.clicked.connect(self.S_Hub)
         self.AboutButton.clicked.connect(self.S_About)
-
-    # Add pdf
-        # self.
+        
 
     # Methods to switch to different pages
     def S_Explain(self):
@@ -38,11 +37,8 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.Main_page.setCurrentIndex(4)
 
 
-
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-
     window = MySideBar()
     window.show()
     app.exec()
