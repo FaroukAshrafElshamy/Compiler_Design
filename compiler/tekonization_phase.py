@@ -4,12 +4,12 @@ from colorama import Fore
 
 # Define token categories with regular expressions 
 TOKEN_SPECIFICATION = [
-    ('KEYWORD', r'\b(lo|mesh|print)\b'),  # Keywords
-    ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),       # Identifiers
+    ('KEYWORD', r'\b(if|else)\b'),                   # Keywords
+    ('IDENTIFIER', r'[a-zA-Z][a-zA-Z0-9_]*'),       # Identifiers
     ('NUMBER', r'\b\d+\b'),                          # Numbers
     ('OPERATOR', r'[+\-=<>]+'),                      # Operators
     ("STRING_LITERAL", r"\".*?\""),                  # Strings
-    ("PUNCTUATION", r"[{}();]"),                     # Punctuation
+    ("PUNCTUATION", r"[():]"),                       # Punctuation
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
 ]
 
