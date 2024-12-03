@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon
 from ui_index3 import Ui_MainWindow
+from PySide6.QtGui import QIcon
+from compiler.tekonization_phase import main
 import sys
 
 class MySideBar(QMainWindow, Ui_MainWindow):
@@ -10,7 +10,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("CodeX")
         self.setWindowIcon(QIcon('resources/compiler(1).png'))
-        self.set_tab_size(5) # Tab Size
+        self.TabSize(5) # Tab Size
 
     # Connect Buttons
         self.ExplainButton.clicked.connect(self.S_Explain)
@@ -21,6 +21,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.ClearButton.clicked.connect(self.S_Clear)
         self.Open_file.clicked.connect(self.S_OpenFile)
         self.Save_file.clicked.connect(self.S_SaveFile)
+        self.RunButton.clicked.connect(self.append_file) ##############
         
 
     # Methods to switch to different pages
@@ -41,11 +42,12 @@ class MySideBar(QMainWindow, Ui_MainWindow):
 
     def S_Clear(self):
         self.textEdit.clear()
+        self.TextOutput.clear()
 
     def S_OpenFile(self):
-        # Open a file dialog
+        global file_path
         file_path, _ = QFileDialog.getOpenFileName(self, "Open Text File", "", "Text Files (*.txt);;All Files (*)")
-        if file_path:  # If a file is selected
+        if file_path:
             try:
                 with open(file_path, "r", encoding="utf-8") as file:
                     content = file.read()
@@ -65,10 +67,23 @@ class MySideBar(QMainWindow, Ui_MainWindow):
             except Exception as e:
                 self.text_edit.setPlainText(f"Failed to save the file.\nError: {e}")
 
-    def set_tab_size(self, space_count):
+    def TabSize(self, space_count):
         font_metrics = self.textEdit.fontMetrics()
         space_width = font_metrics.horizontalAdvance(' ')
         self.textEdit.setTabStopDistance(space_width * space_count)
+
+
+    def append_file(self):
+        # (file_path)
+        # file_path, _ = QFileDialog.getOpenFileName(self, "Select Text File to Append", "", "Text Files (*.txt);;All Files (*)")
+        main(file_path)
+        if file_path:
+            try:
+                with open(file_path, "r", encoding="utf-8") as file:
+                    content = file.read()
+                self.TextOutput.append(content)
+            except Exception as e:
+                self.TextOutput.append(f"Failed to append the file.\nError: {e}")
 
 
 if __name__ == "__main__":
