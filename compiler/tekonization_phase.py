@@ -12,6 +12,11 @@ TOKEN_SPECIFICATION = [
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
 ]
 
+
+def read_file(file_path):
+    with open(file_path, 'r') as file:
+        return file.read()
+
 # Compile regexes for token matching
 def lexer(code):
     tokens = []
@@ -31,9 +36,6 @@ def lexer(code):
             raise ValueError(f"Unknown token at position {pos}: {code[pos]}")
     return tokens
 
-    def read_file(file_path):
-        with open(file_path, 'r') as file:
-            return file.read()
 
 if __name__ == '__main__':
     file_path = 'constants/code.txt'
