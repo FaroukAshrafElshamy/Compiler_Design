@@ -1,7 +1,9 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem
 from ui_index3 import Ui_MainWindow
-from PySide6.QtGui import QIcon
 from compiler.tokenization_phase import main
+from compiler.symbol_table import symbolTalbe
+from compiler.parser_phase import visulize
+from PySide6.QtGui import QIcon
 from compiler.First import First
 import csv
 import sys
@@ -26,6 +28,8 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.RunButton.clicked.connect(self.OutputTokens)
         self.RunButton.clicked.connect(self.OutputFirst)
         self.RunButton.clicked.connect(self.OutputSymboleTable)
+        self.RunButton.clicked.connect(self.OutputParse)
+        self.FigureButton.clicked.connect(visulize)
         
 
     # Methods to switch to different pages
@@ -53,6 +57,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         global file_path
         file_path, _ = QFileDialog.getOpenFileName(self, "Open Text File", "", "Text Files (*.txt);;All Files (*)")
         main(file_path, 1)
+        symbolTalbe(file_path)
         if file_path:
             try:
                 with open(file_path, "r", encoding="utf-8") as file:
@@ -70,6 +75,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
                     content = self.textEdit.toPlainText()
                     file.write(content)
                 main(file_path2, 1)
+                symbolTalbe(file_path2)
             except Exception as e:
                 self.text_edit.setPlainText(f"Failed to save the file.\nError: {e}")
 
@@ -100,6 +106,17 @@ class MySideBar(QMainWindow, Ui_MainWindow):
                 self.TextOutput3.append(content)
             except Exception as e:
                 self.TextOutput3.append(f"Failed to append the file.\nError: {e}")
+
+    def OutputParse(self):
+        self.TextOutput2.clear()
+        output_path = "compiler/Output/ParseTree.json"
+        if output_path:
+            try:
+                with open(output_path, "r", encoding="utf-8") as file:
+                    content = file.read()
+                self.TextOutput2.append(content)
+            except Exception as e:
+                self.TextOutput2.append(f"Failed to append the file.\nError: {e}")
 
     def OutputSymboleTable(self):
         self.tableWidget.clear()
