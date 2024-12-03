@@ -3,12 +3,12 @@ from colorama import Fore
 
 # Define token categories with regular expressions 
 TOKEN_SPECIFICATION = [
-    ('KEYWORD', r'\b(if|else|print)\b'),  # Keywords
+    ('KEYWORD', r'\b(lo|mesh|print)\b'),  # Keywords
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),       # Identifiers
     ('NUMBER', r'\b\d+\b'),                          # Numbers
     ('OPERATOR', r'[+\-=<>]+'),                      # Operators
     ("STRING_LITERAL", r"\".*?\""),                  # Strings
-    ("PUNCTUATION", r"[{}();:]"),                     # Punctuation
+    ("PUNCTUATION", r"[{}();]"),                     # Punctuation
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
 ]
 
@@ -31,7 +31,7 @@ def lexer(code):
             raise ValueError(f"Unknown token at position {pos}: {code[pos]}")
     return tokens
 
-def read_file(file_path):
+    def read_file(file_path):
         with open(file_path, 'r') as file:
             return file.read()
 

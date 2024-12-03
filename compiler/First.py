@@ -18,42 +18,42 @@ GRAMMER = {
 
 FIRST = {}
 
-def is_terminal(obj):
+def terminal(obj):
     return obj not in GRAMMER or obj in ["[A-Z]", "[a-z]", "[0-9]", "_"]
 
-def get_first(obj):
+def first(obj):
 
     if obj in FIRST:
         return FIRST[obj]
     FIRST[obj] = set()
 
     for product in GRAMMER.get(obj, []):
-        parts = product.split()
-        for part in parts:
-            if is_terminal(part):
-                if part == "[A-Z]":
+        grammers = product.split()
+        for txt in grammers:
+            if terminal(txt):
+                if txt == "[A-Z]":
                     FIRST[obj].update(chr(c) for c in range(ord('A'), ord('Z') + 1))
-                elif part == "[a-z]":
+                elif txt == "[a-z]":
                     FIRST[obj].update(chr(c) for c in range(ord('a'), ord('z') + 1))
-                elif part == "[0-9]":
+                elif txt == "[0-9]":
                     FIRST[obj].update(chr(c) for c in range(ord('0'), ord('9') + 1))
-                elif part == "_":
+                elif txt == "_":
                     FIRST[obj].add("_")
-                elif part == "(":
+                elif txt == "(":
                     FIRST[obj].add("(")
                 else:
-                    FIRST[obj].add(part)
+                    FIRST[obj].add(txt)
                 break
             else:
-                FIRST[obj].update(get_first(part) - {"\""})
-                if "" not in FIRST[part]:
+                FIRST[obj].update(first(txt) - {"\""})
+                if "" not in FIRST[txt]:
                     break
     return FIRST[obj]
 
 for non_terminal in GRAMMER:
-    get_first(non_terminal)
+    first(non_terminal)
 
-for non_terminal, first_set in FIRST.items():
-    print(f"First({non_terminal})          \t ==> \t{sorted(first_set)}")
+for non_terminal, s_first in FIRST.items():
+    print(f"First({non_terminal})          \t ==> \t{sorted(s_first)}")
     
     
