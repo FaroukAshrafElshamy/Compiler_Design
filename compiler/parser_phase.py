@@ -48,9 +48,9 @@ class Parser:
         if self.match('IDENTIFIER'):
             return {"<identifier>": self.consume('IDENTIFIER')}
         elif self.match('NUMBER'):
-            return {"<literal>": self.consume('NUMBER')}
+            return {"<digit>": self.consume('NUMBER')}
         elif self.match('STRING_LITERAL'):
-            return {"<literal>": self.consume('STRING_LITERAL')}
+            return {"<letter>": self.consume('STRING_LITERAL')}
 
     def match(self, kind, value=None):
         if self.pos >= len(self.tokens):
