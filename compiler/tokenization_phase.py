@@ -8,7 +8,7 @@ TOKEN_SPECIFICATION = [
     ('NUMBER', r'\b\d+\b'),                          # Numbers
     ('OPERATOR', r'[+\-=<>]+'),                      # Operators
     ("STRING_LITERAL", r"\".*?\""),                  # Strings
-    ("PUNCTUATION", r"[():]"),                     # Punctuation
+    ("PUNCTUATION", r"[():]"),                       # Punctuation
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
 ]
 
