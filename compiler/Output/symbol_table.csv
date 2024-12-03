@@ -1,0 +1,5 @@
+name,type,size,dim,lineDeclared,lineOfUsage
+num,null,null,0,2,"[6, 9]"
+name,null,null,0,3,[]
+age,null,null,0,4,[]
+x,null,null,0,7,[11]
