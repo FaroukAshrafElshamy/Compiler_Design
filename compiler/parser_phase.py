@@ -86,7 +86,7 @@ print(json_object)
 # with open("ParseTree.json", "w") as outfile:
 #     outfile.write(json_object)
 
-
+#--------------------------------------------------------------------------------------
 def json_to_tree_graph(json_data, graph=None, parent="root", level=0, level_nodes=None):
     if graph is None:
         graph = nx.DiGraph() 
@@ -130,8 +130,6 @@ def calculate_positions(level_nodes, screen_width=10):
 
 def visualize_tree_centered(graph, positions):
     labels = nx.get_node_attributes(graph, 'label') 
-
-    # Draw the graph
     plt.figure(figsize=(12, 8))
     nx.draw(graph, positions, with_labels=False, node_color="lightblue", node_size=2000, arrows=False)
     nx.draw_networkx_labels(graph, positions, labels, font_size=10, font_color="black")
