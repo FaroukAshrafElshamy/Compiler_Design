@@ -1,7 +1,6 @@
 from tokenization_phase import lexer, read_file
 import json
 
-# Parser class to construct parse tree
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
@@ -78,7 +77,8 @@ parser = Parser(tokens)
 parse_tree = parser.parse()
 # print(parse_tree)
 
-json_object = json.dumps(parse_tree, indent=2)
 
-with open("ParseTree.json", "w") as outfile:
-    outfile.write(json_object)
+json_object = json.dumps(parse_tree, indent=2)
+print(json_object)
+# with open("ParseTree.json", "w") as outfile:
+#     outfile.write(json_object)

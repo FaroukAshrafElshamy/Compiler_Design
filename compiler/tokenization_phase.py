@@ -1,7 +1,7 @@
 import re
 from colorama import Fore
 
-# Define token categories with regular expressions 
+
 TOKEN_SPECIFICATION = [
     ('KEYWORD', r'\b(if|else)\b'),                   # Keywords
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),       # Identifiers
