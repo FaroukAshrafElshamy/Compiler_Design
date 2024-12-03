@@ -18,8 +18,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTextBrowser, QTextEdit, QVBoxLayout,
-    QWidget)
+    QStackedWidget, QTabWidget, QTextBrowser, QTextEdit,
+    QVBoxLayout, QWidget)
 import resource_rc
 
 class Ui_MainWindow(object):
@@ -67,7 +67,7 @@ class Ui_MainWindow(object):
 "	background-color:transparent;\n"
 "}\n"
 "\n"
-"#textEdit{\n"
+"#textEdit, #tabWidget, QTextBrowser{\n"
 "	padding:5px;\n"
 "	background-color:#040f13;\n"
 "	border-radius:10px;\n"
@@ -249,6 +249,7 @@ class Ui_MainWindow(object):
         self.page_2.setObjectName(u"page_2")
         self.verticalLayout_6 = QVBoxLayout(self.page_2)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalLayout_6.setContentsMargins(2, 2, 2, 2)
         self.textEdit = QTextEdit(self.page_2)
         self.textEdit.setObjectName(u"textEdit")
         font1 = QFont()
@@ -272,6 +273,7 @@ class Ui_MainWindow(object):
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.frame)
+        self.horizontalLayout_8.setSpacing(5)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.fileName = QLabel(self.frame)
@@ -283,15 +285,24 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_8.addItem(self.horizontalSpacer)
 
+        self.RunButton = QPushButton(self.frame)
+        self.RunButton.setObjectName(u"RunButton")
+        self.RunButton.setMinimumSize(QSize(100, 0))
+        icon6 = QIcon()
+        icon6.addFile(u":/icon/resources/sharpen2.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.RunButton.setIcon(icon6)
+
+        self.horizontalLayout_8.addWidget(self.RunButton)
+
         self.Open_file = QPushButton(self.frame)
         self.Open_file.setObjectName(u"Open_file")
         self.Open_file.setMinimumSize(QSize(100, 0))
         self.Open_file.setMaximumSize(QSize(100, 16777215))
         self.Open_file.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.Open_file.setAutoFillBackground(False)
-        icon6 = QIcon()
-        icon6.addFile(u":/icon/resources/open-folder.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.Open_file.setIcon(icon6)
+        icon7 = QIcon()
+        icon7.addFile(u":/icon/resources/open-folder.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.Open_file.setIcon(icon7)
         self.Open_file.setCheckable(True)
         self.Open_file.setAutoExclusive(False)
 
@@ -301,9 +312,9 @@ class Ui_MainWindow(object):
         self.ClearButton.setObjectName(u"ClearButton")
         self.ClearButton.setMinimumSize(QSize(100, 0))
         self.ClearButton.setMaximumSize(QSize(100, 16777215))
-        icon7 = QIcon()
-        icon7.addFile(u":/icon/resources/rubber.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ClearButton.setIcon(icon7)
+        icon8 = QIcon()
+        icon8.addFile(u":/icon/resources/rubber.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ClearButton.setIcon(icon8)
 
         self.horizontalLayout_8.addWidget(self.ClearButton)
 
@@ -311,9 +322,9 @@ class Ui_MainWindow(object):
         self.Save_file.setObjectName(u"Save_file")
         self.Save_file.setMinimumSize(QSize(100, 0))
         self.Save_file.setMaximumSize(QSize(100, 16777215))
-        icon8 = QIcon()
-        icon8.addFile(u":/icon/resources/floppy-disk.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.Save_file.setIcon(icon8)
+        icon9 = QIcon()
+        icon9.addFile(u":/icon/resources/floppy-disk.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.Save_file.setIcon(icon9)
 
         self.horizontalLayout_8.addWidget(self.Save_file)
 
@@ -323,6 +334,36 @@ class Ui_MainWindow(object):
         self.Main_page.addWidget(self.page_2)
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
+        self.verticalLayout_5 = QVBoxLayout(self.page_3)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.tabWidget = QTabWidget(self.page_3)
+        self.tabWidget.setObjectName(u"tabWidget")
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.verticalLayout_7 = QVBoxLayout(self.tab)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(2, 2, 2, 2)
+        self.TextOutput = QTextBrowser(self.tab)
+        self.TextOutput.setObjectName(u"TextOutput")
+
+        self.verticalLayout_7.addWidget(self.TextOutput)
+
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QWidget()
+        self.tab_2.setObjectName(u"tab_2")
+        self.horizontalLayout_9 = QHBoxLayout(self.tab_2)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.horizontalLayout_9.setContentsMargins(2, 2, 2, 2)
+        self.textBrowser_2 = QTextBrowser(self.tab_2)
+        self.textBrowser_2.setObjectName(u"textBrowser_2")
+
+        self.horizontalLayout_9.addWidget(self.textBrowser_2)
+
+        self.tabWidget.addTab(self.tab_2, "")
+
+        self.verticalLayout_5.addWidget(self.tabWidget)
+
         self.Main_page.addWidget(self.page_3)
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
@@ -372,6 +413,7 @@ class Ui_MainWindow(object):
         self.pushButton_6.toggled.connect(MainWindow.close)
 
         self.Main_page.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -395,12 +437,18 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><img src=\":/icon/resources/CompilerPhases-Photoroom.png\" /></p></body></html>", None))
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><img src=\":/icon/resources/Com"
+                        "pilerPhases-Photoroom.png\" /></p></body></html>", None))
         self.textEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter Your Code", None))
         self.fileName.setText("")
+        self.RunButton.setText(QCoreApplication.translate("MainWindow", u"  Run", None))
         self.Open_file.setText(QCoreApplication.translate("MainWindow", u"Open File", None))
         self.ClearButton.setText(QCoreApplication.translate("MainWindow", u" Clear", None))
-        self.Save_file.setText(QCoreApplication.translate("MainWindow", u" Save", None))
+        self.Save_file.setText(QCoreApplication.translate("MainWindow", u"  Save", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Lexical Analysis", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Syntax Analysis", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Soon... The Hub", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
