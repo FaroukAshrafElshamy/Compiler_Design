@@ -1,4 +1,4 @@
-from tekonization_phase import lexer, read_file
+from compiler.tokenization_phase import lexer, read_file
 # Parser and Interpreter
 class Parser:
     def __init__(self, tokens):
