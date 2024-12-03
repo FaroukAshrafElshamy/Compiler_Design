@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(793, 514)
+        MainWindow.resize(1020, 623)
         self.actionSave_As = QAction(MainWindow)
         self.actionSave_As.setObjectName(u"actionSave_As")
         self.actionQuit = QAction(MainWindow)
@@ -63,12 +63,13 @@ class Ui_MainWindow(object):
 "	border-radius:10px;\n"
 "}\n"
 "\n"
-"#textBrowser{\n"
+"#textBrowser, #TextExplain{\n"
 "	background-color:transparent;\n"
 "}\n"
 "\n"
-"QWebEngineView, #textEdit{\n"
-"	background-color:transparent;\n"
+"#textEdit{\n"
+"	padding:5px;\n"
+"	background-color:#040f13;\n"
 "	border-radius:10px;\n"
 "}\n"
 "")
@@ -252,10 +253,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.label_3 = QLabel(self.page)
-        self.label_3.setObjectName(u"label_3")
+        self.TextExplain = QTextBrowser(self.page)
+        self.TextExplain.setObjectName(u"TextExplain")
 
-        self.horizontalLayout_5.addWidget(self.label_3)
+        self.horizontalLayout_5.addWidget(self.TextExplain)
 
         self.Main_page.addWidget(self.page)
         self.page_2 = QWidget()
@@ -267,8 +268,11 @@ class Ui_MainWindow(object):
         font1 = QFont()
         font1.setPointSize(11)
         self.textEdit.setFont(font1)
-        self.textEdit.setTabChangesFocus(True)
+        self.textEdit.setAutoFormatting(QTextEdit.AutoFormattingFlag.AutoNone)
+        self.textEdit.setLineWrapMode(QTextEdit.LineWrapMode.WidgetWidth)
+        self.textEdit.setOverwriteMode(False)
         self.textEdit.setCursorWidth(3)
+        self.textEdit.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByKeyboard|Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextBrowserInteraction|Qt.TextInteractionFlag.TextEditable|Qt.TextInteractionFlag.TextEditorInteraction|Qt.TextInteractionFlag.TextSelectableByKeyboard|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_6.addWidget(self.textEdit)
 
@@ -284,6 +288,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8 = QHBoxLayout(self.frame)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.fileName = QLabel(self.frame)
+        self.fileName.setObjectName(u"fileName")
+
+        self.horizontalLayout_8.addWidget(self.fileName)
+
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_8.addItem(self.horizontalSpacer)
@@ -302,13 +311,23 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_8.addWidget(self.Open_file)
 
+        self.ClearButton = QPushButton(self.frame)
+        self.ClearButton.setObjectName(u"ClearButton")
+        self.ClearButton.setMinimumSize(QSize(100, 0))
+        self.ClearButton.setMaximumSize(QSize(100, 16777215))
+        icon7 = QIcon()
+        icon7.addFile(u":/icon/resources/rubber.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ClearButton.setIcon(icon7)
+
+        self.horizontalLayout_8.addWidget(self.ClearButton)
+
         self.Save_file = QPushButton(self.frame)
         self.Save_file.setObjectName(u"Save_file")
         self.Save_file.setMinimumSize(QSize(100, 0))
         self.Save_file.setMaximumSize(QSize(100, 16777215))
-        icon7 = QIcon()
-        icon7.addFile(u":/icon/resources/floppy-disk.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.Save_file.setIcon(icon7)
+        icon8 = QIcon()
+        icon8.addFile(u":/icon/resources/floppy-disk.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.Save_file.setIcon(icon8)
 
         self.horizontalLayout_8.addWidget(self.Save_file)
 
@@ -383,9 +402,18 @@ class Ui_MainWindow(object):
         self.HubButton.setText(QCoreApplication.translate("MainWindow", u" Hub", None))
         self.AboutButton.setText(QCoreApplication.translate("MainWindow", u" About", None))
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"  Exit", None))
-        self.label_3.setText("")
+        self.TextExplain.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><img src=\":/icon/resources/CompilerPhases-Photoroom.png\" /></p></body></html>", None))
         self.textEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter Your Code", None))
+        self.fileName.setText("")
         self.Open_file.setText(QCoreApplication.translate("MainWindow", u"Open File", None))
+        self.ClearButton.setText(QCoreApplication.translate("MainWindow", u" Clear", None))
         self.Save_file.setText(QCoreApplication.translate("MainWindow", u" Save", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Soon... The Hub", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
