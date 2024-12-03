@@ -1,59 +1,72 @@
 from tokenization_phase import lexer, read_file
+import json
 
+# Parser class to construct parse tree
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
-        self.current = 0
+        self.pos = 0
 
-    def match(self, *expected_types):
-        """Consume a token if it matches any of the expected types."""
-        if self.current < len(self.tokens) and self.tokens[self.current][0] in expected_types:
-            token = self.tokens[self.current]
-            self.current += 1
-            return token
-        return None
-    
+    def parse(self):
+        statements = []
+        while self.pos < len(self.tokens):
+            statements.append(self.statement())
+        return {"<program>": statements}
 
-    def parse_statement(self):
-        node = None
-        if self.match("IDENTIFIER"):
-            self.current -= 1  
-            node = self.parse_variable_declaration()
-        elif self.match("KEYWORD", "if"):
-            self.current -= 1  
-            node = self.parse_condition_statement()
-        return node
+    def statement(self):
+        if self.match('IDENTIFIER'):
+            return {"<variable_declaration>": self.variable_declaration()}
+        elif self.match('KEYWORD', 'if'):
+            return {"<condition_statement>": self.condition_statement()}
 
-    def parse_variable_declaration(self):
-        identifier = self.match("IDENTIFIER")
-        self.match("OPERATOR")  
-        expression = self.parse_expression()
-        return ("variable_declaration", identifier, expression)
+    def variable_declaration(self):
+        identifier = self.consume('IDENTIFIER')
+        self.consume('OPERATOR', '=')
+        expression = self.expression()
+        return {"<identifier>": identifier, "<expression>": expression}
 
-    def parse_condition_statement(self):
-        if_token = self.match("if")
-        self.match("PUNCTUATION")  
-        condition = self.parse_condition()
-        self.match("PUNCTUATION")  
-        self.match("PUNCTUATION")  
-        true_branch = self.parse_statement()
-        else_branch = None
-        if self.match("else"):
-            self.match("PUNCTUATION")
-            else_branch = self.parse_statement()
-        return ("condition", condition, true_branch, else_branch)
+    def condition_statement(self):
+        self.consume('KEYWORD', 'if')
+        self.consume('PUNCTUATION', '(')
+        condition = self.condition()
+        self.consume('PUNCTUATION', ')')
+        self.consume('PUNCTUATION', ':')
+        truee = self.statement()
+        if self.match('KEYWORD', 'else'):
+            self.consume('KEYWORD', 'else')
+            self.consume('PUNCTUATION', ':')
+            falsee = self.statement()
+            return {"<if_statment>": condition, "<true>": truee, "<false>": falsee}
+        return {"<if_statment>": condition, "<true>": truee}
 
-    def parse_condition(self):
-        left = self.parse_expression()
-        operator = self.match("OPERATOR")
-        right = self.parse_expression()
-        return ("condition", left, operator, right)
+    def condition(self):
+        left = self.expression()
+        operator = self.consume('OPERATOR')
+        right = self.expression()
+        return {"<condition>": {"<left>": left, "<operator>": operator, "<right>": right}}
 
-    def parse_expression(self):
-        token = self.match("IDENTIFIER", "NUMBER", "STRING_LITERAL")
-        if token:
-            return ("expression", token)
-        
+    def expression(self):
+        if self.match('IDENTIFIER'):
+            return {"<identifier>": self.consume('IDENTIFIER')}
+        elif self.match('NUMBER'):
+            return {"<literal>": self.consume('NUMBER')}
+        elif self.match('STRING_LITERAL'):
+            return {"<literal>": self.consume('STRING_LITERAL')}
+
+    def match(self, kind, value=None):
+        if self.pos >= len(self.tokens):
+            return False
+        token_kind, token_value = self.tokens[self.pos]
+        # print("matching", kind, value, token_kind, token_value)
+        return token_kind == kind and (value is None or token_value == value)
+
+    def consume(self, kind, value=None):
+        if self.match(kind, value):
+            token = self.tokens[self.pos]
+            # print("%s: %s" % (kind, value))
+            self.pos += 1
+            return token[1]
+
         
 file_path = './constants/code.txt'
 
@@ -61,13 +74,11 @@ code = read_file(file_path)
 
 tokens = lexer(code)
 parser = Parser(tokens)
-print(parser.tokens)
-parse_tree = parser.parse_statement()
+# print(parser.tokens)
+parse_tree = parser.parse()
+# print(parse_tree)
 
-print(parse_tree)
+json_object = json.dumps(parse_tree, indent=2)
 
-
-parser = Parser(tokens)
-parse_tree = parser.parse_statement()
-
-print(parse_tree)
+with open("ParseTree.json", "w") as outfile:
+    outfile.write(json_object)

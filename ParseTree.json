@@ -1,0 +1,67 @@
+{
+  "<program>": [
+    {
+      "<variable_declaration>": {
+        "<identifier>": "num",
+        "<expression>": {
+          "<literal>": "5"
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "name",
+        "<expression>": {
+          "<literal>": "\"khaled\""
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "age",
+        "<expression>": {
+          "<literal>": "23"
+        }
+      }
+    },
+    {
+      "<condition_statement>": {
+        "<if_statment>": {
+          "<condition>": {
+            "<left>": {
+              "<identifier>": "num"
+            },
+            "<operator>": ">",
+            "<right>": {
+              "<literal>": "7"
+            }
+          }
+        },
+        "<true>": {
+          "<variable_declaration>": {
+            "<identifier>": "x",
+            "<expression>": {
+              "<literal>": "3"
+            }
+          }
+        },
+        "<false>": {
+          "<variable_declaration>": {
+            "<identifier>": "num",
+            "<expression>": {
+              "<literal>": "2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "x",
+        "<expression>": {
+          "<literal>": "8"
+        }
+      }
+    }
+  ]
+}
