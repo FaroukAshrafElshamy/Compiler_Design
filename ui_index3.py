@@ -39,17 +39,17 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#centralwidget{\n"
-"	background-color:#040f13;\n"
+"	background-color:qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,stop: 0 black, stop: 0.5 #0c2a4b,stop: 1 black);\n"
 "}\n"
 "#Side_Menu{\n"
 "	padding:5px;\n"
 "	margin-right:5px;\n"
-"	background-color:#071e26;\n"
+"	background-color:#131c26;\n"
 "	border-radius:10px;\n"
 "}\n"
 "QPushButton{\n"
 "	padding:10px 10px 10px 20px;\n"
-"	background-color:#040f13;\n"
+"	background-color:qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,stop: 0 #030a12, stop: 0.4 #061424, stop: 1 #030a12);\n"
 "	border-radius:5px;\n"
 "	text-align:left;\n"
 "}\n"
@@ -65,7 +65,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#Main_body{\n"
-"	background-color:#071e26;\n"
+"	background-color:#131c26;\n"
 "	border-radius:10px;\n"
 "}\n"
 "\n"
@@ -75,7 +75,7 @@ class Ui_MainWindow(object):
 "\n"
 "#textEdit, QTabWidget, QTextBrowser, #tableWidget{\n"
 "	padding:5px;\n"
-"	background-color:#040f13;\n"
+"	background-color:qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,stop: 0 #06090f, stop: 0.5 #061424,stop: 1 #06090f);\n"
 "	border-radius:10px;\n"
 "}\n"
 "")
@@ -159,7 +159,7 @@ class Ui_MainWindow(object):
         icon.addFile(u":/icon/resources/compiler (1).png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.ExplainButton.setIcon(icon)
         self.ExplainButton.setCheckable(True)
-        self.ExplainButton.setChecked(True)
+        self.ExplainButton.setChecked(False)
         self.ExplainButton.setAutoExclusive(True)
 
         self.verticalLayout_2.addWidget(self.ExplainButton)
@@ -208,6 +208,7 @@ class Ui_MainWindow(object):
         icon4.addFile(u":/icon/resources/information.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.AboutButton.setIcon(icon4)
         self.AboutButton.setCheckable(True)
+        self.AboutButton.setChecked(True)
         self.AboutButton.setAutoExclusive(True)
 
         self.verticalLayout_2.addWidget(self.AboutButton)
@@ -376,14 +377,42 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
-        self.horizontalLayout_9 = QHBoxLayout(self.tab_2)
-        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.horizontalLayout_9.setContentsMargins(2, 2, 2, 2)
+        self.verticalLayout_10 = QVBoxLayout(self.tab_2)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.verticalLayout_10.setContentsMargins(2, 2, 2, 2)
         self.TextOutput2 = QTextBrowser(self.tab_2)
         self.TextOutput2.setObjectName(u"TextOutput2")
         self.TextOutput2.setFont(font1)
 
-        self.horizontalLayout_9.addWidget(self.TextOutput2)
+        self.verticalLayout_10.addWidget(self.TextOutput2)
+
+        self.frame_2 = QFrame(self.tab_2)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setMinimumSize(QSize(0, 30))
+        self.frame_2.setMaximumSize(QSize(16777215, 35))
+        self.frame_2.setStyleSheet(u"")
+        self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_7 = QHBoxLayout(self.frame_2)
+        self.horizontalLayout_7.setSpacing(0)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_2)
+
+        self.FigureButton = QPushButton(self.frame_2)
+        self.FigureButton.setObjectName(u"FigureButton")
+        self.FigureButton.setMinimumSize(QSize(130, 0))
+        self.FigureButton.setMaximumSize(QSize(130, 16777215))
+        icon10 = QIcon()
+        icon10.addFile(u":/icon/resources/eye.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.FigureButton.setIcon(icon10)
+
+        self.horizontalLayout_7.addWidget(self.FigureButton)
+
+
+        self.verticalLayout_10.addWidget(self.frame_2)
 
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_3 = QWidget()
@@ -455,7 +484,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_6.toggled.connect(MainWindow.close)
 
-        self.Main_page.setCurrentIndex(0)
+        self.Main_page.setCurrentIndex(4)
         self.tabWidget.setCurrentIndex(0)
 
 
@@ -491,6 +520,7 @@ class Ui_MainWindow(object):
         self.ClearButton.setText(QCoreApplication.translate("MainWindow", u" Clear", None))
         self.Save_file.setText(QCoreApplication.translate("MainWindow", u"  Save", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Tokens", None))
+        self.FigureButton.setText(QCoreApplication.translate("MainWindow", u"Show Figure", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Parser", None))
         self.TextOutput3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
