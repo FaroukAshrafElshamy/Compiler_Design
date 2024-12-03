@@ -65,3 +65,7 @@ for iden in get_the_identifiers_only():
 data = [vars(symbol) for symbol in symbols]
 df = pd.DataFrame(data)
 print(df)
+
+# save on the csv file
+
+df.to_csv('constants/symbol_table.csv', index=False)

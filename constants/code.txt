@@ -7,7 +7,5 @@ if (num > 7):
 	x = 3
 else: 
 	num = 2
-	print(num)
-
-print(name)
+	
 x = 8
