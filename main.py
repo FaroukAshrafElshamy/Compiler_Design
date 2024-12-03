@@ -21,7 +21,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.ClearButton.clicked.connect(self.S_Clear)
         self.Open_file.clicked.connect(self.S_OpenFile)
         self.Save_file.clicked.connect(self.S_SaveFile)
-        self.RunButton.clicked.connect(self.append_file) ##############
+        self.RunButton.clicked.connect(self.append_file)
         
 
     # Methods to switch to different pages

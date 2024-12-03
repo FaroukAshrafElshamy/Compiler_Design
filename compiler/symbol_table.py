@@ -1,5 +1,5 @@
 
-from compiler.tokenization_phase import *
+from tokenization_phase import *
 import pandas as pd
 
 def get_the_identifiers_only():
@@ -66,6 +66,8 @@ data = [vars(symbol) for symbol in symbols]
 df = pd.DataFrame(data)
 print(df)
 
-# save on the csv file
 
-df.to_csv('constants/symbol_table.csv', index=False)
+
+
+# save on the csv file
+# df.to_csv('constants/symbol_table.csv', index=False)

@@ -12,7 +12,6 @@ TOKEN_SPECIFICATION = [
     ('WHITESPACE', r'\s+'),                          # Whitespace (to skip)
 ]
 
-# Compile regexes for token matching
 def lexer(code):
     tokens = []
     pos = 0
@@ -23,7 +22,8 @@ def lexer(code):
             match = regex.match(code, pos)
             if match:
                 lexeme = match.group(0)
-                if token_type != "WHITESPACE":
+
+                if token_type != "WHITESPACE": 
                     tokens.append((token_type, lexeme))
                 pos = match.end()
                 break
@@ -32,8 +32,8 @@ def lexer(code):
     return tokens
 
 def read_file(file_path):
-	with open(file_path, 'r') as file:
-		return file.read()
+    with open(file_path, 'r') as file:
+        return file.read()
 
 if __name__ == '__main__':
     file_path = 'constants/code.txt'
@@ -41,7 +41,7 @@ if __name__ == '__main__':
     code = read_file(file_path)
     tokens = lexer(code)
     
-    # Display tokens and their count
+
     print("Tokens:")
     print(f"Type\t\tLexeme")
     for token_type, lexeme in tokens:
