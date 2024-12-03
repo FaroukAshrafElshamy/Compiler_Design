@@ -16,10 +16,11 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTabWidget, QTextBrowser, QTextEdit,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QHeaderView,
+    QLabel, QMainWindow, QPushButton, QSizePolicy,
+    QSpacerItem, QStackedWidget, QTabWidget, QTableWidget,
+    QTableWidgetItem, QTextBrowser, QTextEdit, QVBoxLayout,
+    QWidget)
 import resource_rc
 
 class Ui_MainWindow(object):
@@ -58,6 +59,11 @@ class Ui_MainWindow(object):
 "	color:balck;\n"
 "}\n"
 "\n"
+"QPushButton:checked{\n"
+"	background-color:rgb(162, 154, 154);\n"
+"	color:balck;\n"
+"}\n"
+"\n"
 "#Main_body{\n"
 "	background-color:#071e26;\n"
 "	border-radius:10px;\n"
@@ -67,7 +73,7 @@ class Ui_MainWindow(object):
 "	background-color:transparent;\n"
 "}\n"
 "\n"
-"#textEdit, #tabWidget, QTextBrowser{\n"
+"#textEdit, QTabWidget, QTextBrowser, #tableWidget{\n"
 "	padding:5px;\n"
 "	background-color:#040f13;\n"
 "	border-radius:10px;\n"
@@ -148,16 +154,19 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.ExplainButton = QPushButton(self.frame_4)
         self.ExplainButton.setObjectName(u"ExplainButton")
+        self.ExplainButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon = QIcon()
         icon.addFile(u":/icon/resources/compiler (1).png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.ExplainButton.setIcon(icon)
         self.ExplainButton.setCheckable(True)
+        self.ExplainButton.setChecked(True)
         self.ExplainButton.setAutoExclusive(True)
 
         self.verticalLayout_2.addWidget(self.ExplainButton)
 
         self.EditorButton = QPushButton(self.frame_4)
         self.EditorButton.setObjectName(u"EditorButton")
+        self.EditorButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon1 = QIcon()
         icon1.addFile(u":/icon/resources/code.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.EditorButton.setIcon(icon1)
@@ -168,6 +177,7 @@ class Ui_MainWindow(object):
 
         self.OutputButton = QPushButton(self.frame_4)
         self.OutputButton.setObjectName(u"OutputButton")
+        self.OutputButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon2 = QIcon()
         icon2.addFile(u":/icon/resources/output.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.OutputButton.setIcon(icon2)
@@ -178,6 +188,7 @@ class Ui_MainWindow(object):
 
         self.HubButton = QPushButton(self.frame_4)
         self.HubButton.setObjectName(u"HubButton")
+        self.HubButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon3 = QIcon()
         icon3.addFile(u":/icon/resources/digital-nomad-hub.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.HubButton.setIcon(icon3)
@@ -192,6 +203,7 @@ class Ui_MainWindow(object):
 
         self.AboutButton = QPushButton(self.frame_4)
         self.AboutButton.setObjectName(u"AboutButton")
+        self.AboutButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/icon/resources/information.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.AboutButton.setIcon(icon4)
@@ -207,6 +219,7 @@ class Ui_MainWindow(object):
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
         self.pushButton_6.setSizePolicy(sizePolicy2)
+        self.pushButton_6.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.pushButton_6.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         icon5 = QIcon()
         icon5.addFile(u":/icon/resources/power-button.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
@@ -253,8 +266,10 @@ class Ui_MainWindow(object):
         self.textEdit = QTextEdit(self.page_2)
         self.textEdit.setObjectName(u"textEdit")
         font1 = QFont()
+        font1.setFamilies([u"Arial"])
         font1.setPointSize(11)
         self.textEdit.setFont(font1)
+        self.textEdit.viewport().setProperty(u"cursor", QCursor(Qt.CursorShape.IBeamCursor))
         self.textEdit.setAutoFormatting(QTextEdit.AutoFormattingFlag.AutoNone)
         self.textEdit.setLineWrapMode(QTextEdit.LineWrapMode.WidgetWidth)
         self.textEdit.setOverwriteMode(False)
@@ -278,6 +293,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.fileName = QLabel(self.frame)
         self.fileName.setObjectName(u"fileName")
+        font2 = QFont()
+        font2.setFamilies([u"Arial"])
+        self.fileName.setFont(font2)
 
         self.horizontalLayout_8.addWidget(self.fileName)
 
@@ -288,6 +306,7 @@ class Ui_MainWindow(object):
         self.RunButton = QPushButton(self.frame)
         self.RunButton.setObjectName(u"RunButton")
         self.RunButton.setMinimumSize(QSize(100, 0))
+        self.RunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon6 = QIcon()
         icon6.addFile(u":/icon/resources/sharpen2.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.RunButton.setIcon(icon6)
@@ -298,6 +317,7 @@ class Ui_MainWindow(object):
         self.Open_file.setObjectName(u"Open_file")
         self.Open_file.setMinimumSize(QSize(100, 0))
         self.Open_file.setMaximumSize(QSize(100, 16777215))
+        self.Open_file.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.Open_file.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.Open_file.setAutoFillBackground(False)
         icon7 = QIcon()
@@ -312,6 +332,7 @@ class Ui_MainWindow(object):
         self.ClearButton.setObjectName(u"ClearButton")
         self.ClearButton.setMinimumSize(QSize(100, 0))
         self.ClearButton.setMaximumSize(QSize(100, 16777215))
+        self.ClearButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon8 = QIcon()
         icon8.addFile(u":/icon/resources/rubber.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.ClearButton.setIcon(icon8)
@@ -322,6 +343,7 @@ class Ui_MainWindow(object):
         self.Save_file.setObjectName(u"Save_file")
         self.Save_file.setMinimumSize(QSize(100, 0))
         self.Save_file.setMaximumSize(QSize(100, 16777215))
+        self.Save_file.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon9 = QIcon()
         icon9.addFile(u":/icon/resources/floppy-disk.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Save_file.setIcon(icon9)
@@ -339,6 +361,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.tabWidget = QTabWidget(self.page_3)
         self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setTabShape(QTabWidget.TabShape.Rounded)
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
         self.verticalLayout_7 = QVBoxLayout(self.tab)
@@ -346,6 +369,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(2, 2, 2, 2)
         self.TextOutput = QTextBrowser(self.tab)
         self.TextOutput.setObjectName(u"TextOutput")
+        self.TextOutput.setFont(font1)
 
         self.verticalLayout_7.addWidget(self.TextOutput)
 
@@ -355,12 +379,38 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9 = QHBoxLayout(self.tab_2)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.horizontalLayout_9.setContentsMargins(2, 2, 2, 2)
-        self.textBrowser_2 = QTextBrowser(self.tab_2)
-        self.textBrowser_2.setObjectName(u"textBrowser_2")
+        self.TextOutput2 = QTextBrowser(self.tab_2)
+        self.TextOutput2.setObjectName(u"TextOutput2")
+        self.TextOutput2.setFont(font1)
 
-        self.horizontalLayout_9.addWidget(self.textBrowser_2)
+        self.horizontalLayout_9.addWidget(self.TextOutput2)
 
         self.tabWidget.addTab(self.tab_2, "")
+        self.tab_3 = QWidget()
+        self.tab_3.setObjectName(u"tab_3")
+        self.verticalLayout_8 = QVBoxLayout(self.tab_3)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.verticalLayout_8.setContentsMargins(2, 2, 2, 2)
+        self.TextOutput3 = QTextBrowser(self.tab_3)
+        self.TextOutput3.setObjectName(u"TextOutput3")
+        self.TextOutput3.setFont(font1)
+        self.TextOutput3.viewport().setProperty(u"cursor", QCursor(Qt.CursorShape.ArrowCursor))
+
+        self.verticalLayout_8.addWidget(self.TextOutput3)
+
+        self.tabWidget.addTab(self.tab_3, "")
+        self.tab_4 = QWidget()
+        self.tab_4.setObjectName(u"tab_4")
+        self.verticalLayout_9 = QVBoxLayout(self.tab_4)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.verticalLayout_9.setContentsMargins(2, 2, 2, 2)
+        self.tableWidget = QTableWidget(self.tab_4)
+        self.tableWidget.setObjectName(u"tableWidget")
+        self.tableWidget.setFont(font1)
+
+        self.verticalLayout_9.addWidget(self.tableWidget)
+
+        self.tabWidget.addTab(self.tab_4, "")
 
         self.verticalLayout_5.addWidget(self.tabWidget)
 
@@ -371,9 +421,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label_2 = QLabel(self.page_4)
         self.label_2.setObjectName(u"label_2")
-        font2 = QFont()
-        font2.setPointSize(25)
-        self.label_2.setFont(font2)
+        font3 = QFont()
+        font3.setPointSize(25)
+        self.label_2.setFont(font3)
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.label_2)
@@ -385,17 +435,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setSpacing(0)
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.widget = QWidget(self.page_5)
-        self.widget.setObjectName(u"widget")
-        self.horizontalLayout_7 = QHBoxLayout(self.widget)
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.textBrowser = QTextBrowser(self.widget)
+        self.textBrowser = QTextBrowser(self.page_5)
         self.textBrowser.setObjectName(u"textBrowser")
 
-        self.horizontalLayout_7.addWidget(self.textBrowser)
-
-
-        self.horizontalLayout_6.addWidget(self.widget)
+        self.horizontalLayout_6.addWidget(self.textBrowser)
 
         self.Main_page.addWidget(self.page_5)
 
@@ -447,8 +490,18 @@ class Ui_MainWindow(object):
         self.Open_file.setText(QCoreApplication.translate("MainWindow", u"Open File", None))
         self.ClearButton.setText(QCoreApplication.translate("MainWindow", u" Clear", None))
         self.Save_file.setText(QCoreApplication.translate("MainWindow", u"  Save", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Lexical Analysis", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Syntax Analysis", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Tokens", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Parser", None))
+        self.TextOutput3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u" First ", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"Symbol Table", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Soon... The Hub", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
@@ -457,26 +510,26 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-fam"
-                        "ily:'Inter','Helvetica Neue','Helvetica','Arial','sans-serif'; font-size:14pt; color:#ffffff;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Inter','Helv"
+                        "etica Neue','Helvetica','Arial','sans-serif'; font-size:14pt; color:#ffffff;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Inter','Helvetica Neue','Helvetica','Arial','sans-serif'; font-size:14pt; color:#ffffff;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Inter','Helvetica Neue','Helvetica','Arial','sans-serif'; font-size:14pt; color:#ffffff;\">This project is developed by CodeX team:</span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0;"
-                        " text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+                        "\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Inter','Helvetica Neue','Helvetica','Arial','sans-serif'; font-size:10pt; color:#ffffff;\">Farouk Ashraf Farouk Elshamy.</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Inter','Helvetica Neue','Helvetica','Arial','sans-serif'; font-size:10pt; color:#ffffff;\"> </span><span style=\" font-size:10pt; color:#ffffff;\">Khaled Abdo Abdelhamed Elmakhashen</span><span style=\" font-family:'Inter','Helvetica Neue','Helvetica','Arial','sans-serif'; font-size:10pt; color:#ffffff;\">.</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Mohamed Mostafa Mohamed Abd"
-                        "elhamed.</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Mohamed Mostafa Mohamed Abdelhamed.</span></"
+                        "p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Omar Mohamed Ahmed Shetewy.</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:700;\">Supervisor: Dr.Heba Hamed.</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">______________________</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p align=\"center\" style="
-                        "\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Copyright \u00a9 2024-CodeX</p>\n"
+"<p align=\"center\" style=\" margin-top:0px"
+                        "; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Copyright \u00a9 2024-CodeX</p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
     # retranslateUi
 

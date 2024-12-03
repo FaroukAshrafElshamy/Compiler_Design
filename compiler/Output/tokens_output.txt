@@ -1,0 +1,31 @@
+Tokens:
+Type                          Lexeme
+IDENTIFIER                    num
+OPERATOR                      =
+NUMBER                        5
+IDENTIFIER                    name
+OPERATOR                      =
+STRING_LITERAL                "khaled"
+IDENTIFIER                    age
+OPERATOR                      =
+NUMBER                        23
+KEYWORD                       if
+PUNCTUATION                   (
+IDENTIFIER                    num
+OPERATOR                      >
+NUMBER                        7
+PUNCTUATION                   )
+PUNCTUATION                   :
+IDENTIFIER                    x
+OPERATOR                      =
+NUMBER                        3
+KEYWORD                       else
+PUNCTUATION                   :
+IDENTIFIER                    num
+OPERATOR                      =
+NUMBER                        2
+IDENTIFIER                    x
+OPERATOR                      =
+NUMBER                        8
+
+Total number of tokens: 27
