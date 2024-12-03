@@ -1,5 +1,9 @@
-from compiler.tokenization_phase import lexer, read_file
-# Parser and Interpreter
+from tokenization_phase import lexer, read_file
+import json
+import networkx as nx
+import matplotlib.pyplot as plt
+from collections import defaultdict
+
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
@@ -8,106 +12,138 @@ class Parser:
     def parse(self):
         statements = []
         while self.pos < len(self.tokens):
-            if self.peek()[1] in ("lo", "lomesh", "mesh"):
-                statements.append(self.parse_condition())
-            else:
-                statements.append(self.parse_assignment())
-        return statements
+            statements.append(self.statement())
+        return {"<program>": statements}
 
-    def parse_condition(self):
-        condition_type = self.consume("KEYWORD")
-        if condition_type == "mesh":
-            condition = None
-        else:
-            self.consume("PUNCTUATION", "(")
-            left = self.consume("IDENTIFIER")
-            operator = self.consume("OPERATOR")
-            right = self.consume("NUMBER")
-            self.consume("PUNCTUATION", ")")
-            condition = (left, operator, int(right))
-        self.consume("PUNCTUATION", "{")
-        body = []
-        while self.peek()[1] != "}":
-            body.append(self.parse_statement())
-        self.consume("PUNCTUATION", "}")
-        self.consume("PUNCTUATION", ";")
-        return {
-            "type": "condition",
-            "condition_type": condition_type,
-            "condition": condition,
-            "body": body,
-        }
+    def statement(self):
+        if self.match('IDENTIFIER'):
+            return {"<variable_declaration>": self.variable_declaration()}
+        elif self.match('KEYWORD', 'if'):
+            return {"<condition_statement>": self.condition_statement()}
 
-    def parse_statement(self):
-        if self.peek()[0] == "KEYWORD" and self.peek()[1] == "fprint":
-            return self.parse_print()
-        raise ValueError(f"Unexpected token {self.peek()}")
+    def variable_declaration(self):
+        identifier = self.consume('IDENTIFIER')
+        self.consume('OPERATOR', '=')
+        expression = self.expression()
+        return {"<identifier>": identifier, "<expression>": expression}
 
-    def parse_print(self):
-        self.consume("KEYWORD", "fprint")
-        self.consume("PUNCTUATION", "(")
-        value = self.consume("STRING_LITERAL")
-        self.consume("PUNCTUATION", ")")
-        self.consume("PUNCTUATION", ";")
-        return {"type": "print", "value": value}
+    def condition_statement(self):
+        self.consume('KEYWORD', 'if')
+        self.consume('PUNCTUATION', '(')
+        condition = self.condition()
+        self.consume('PUNCTUATION', ')')
+        self.consume('PUNCTUATION', ':')
+        truee = self.statement()
+        if self.match('KEYWORD', 'else'):
+            self.consume('KEYWORD', 'else')
+            self.consume('PUNCTUATION', ':')
+            falsee = self.statement()
+            return {"<if_statment>": condition, "<true_statment>": truee, "<false_statment>": falsee}
+        return {"<if_statment>": condition, "<true_statment>": truee}
 
-    def parse_assignment(self):
-        var_name = self.consume("IDENTIFIER")
-        self.consume("OPERATOR", "=")
-        value = self.consume("NUMBER")
-        self.consume("PUNCTUATION", ";")
-        return {"type": "assignment", "name": var_name, "value": int(value)}
+    def condition(self):
+        left = self.expression()
+        operator = self.consume('OPERATOR')
+        right = self.expression()
+        return {"<condition>": {"<left>": left, "<operator>": operator, "<right>": right}}
 
-    def consume(self, expected_type, expected_value=None):
-        token = self.tokens[self.pos]
-        if token[0] != expected_type or (expected_value and token[1] != expected_value):
-            raise ValueError(f"Expected {expected_type} {expected_value}, but got {token}")
-        self.pos += 1
-        return token[1]
+    def expression(self):
+        if self.match('IDENTIFIER'):
+            return {"<identifier>": self.consume('IDENTIFIER')}
+        elif self.match('NUMBER'):
+            return {"<digit>": self.consume('NUMBER')}
+        elif self.match('STRING_LITERAL'):
+            return {"<letter>": self.consume('STRING_LITERAL')}
 
-    def peek(self):
-        return self.tokens[self.pos]
+    def match(self, kind, value=None):
+        if self.pos >= len(self.tokens):
+            return False
+        token_kind, token_value = self.tokens[self.pos]
+        # print("matching", kind, value, token_kind, token_value)
+        return token_kind == kind and (value is None or token_value == value)
 
-# Interpreter class
-class Interpreter:
-    def __init__(self, ast):
-        self.ast = ast
-        self.variables = {}
-
-    def execute(self):
-        for statement in self.ast:
-            self.execute_statement(statement)
-
-    def execute_statement(self, statement):
-        if statement["type"] == "assignment":
-            self.variables[statement["name"]] = statement["value"]
-        elif statement["type"] == "print":
-            value = statement["value"]
-            if value in self.variables:
-                print(self.variables[value])
-            else:
-                print(value.strip('"'))
-        elif statement["type"] == "condition":
-            self.execute_condition(statement)
-
-    def execute_condition(self, statement):
-        if statement["condition_type"] == "mesh":
-            for body_stmt in statement["body"]:
-                self.execute_statement(body_stmt)
-        else:
-            left, operator, right = statement["condition"]
-            if eval(f"{self.variables[left]} {operator} {right}"):
-                for body_stmt in statement["body"]:
-                    self.execute_statement(body_stmt)
+    def consume(self, kind, value=None):
+        if self.match(kind, value):
+            token = self.tokens[self.pos]
+            # print("%s: %s" % (kind, value))
+            self.pos += 1
+            return token[1]
 
         
-file_path = 'conistants/code.txt'
+file_path = './constants/code.txt'
 
 code = read_file(file_path)
 
 tokens = lexer(code)
 parser = Parser(tokens)
-ast = parser.parse()
+# print(parser.tokens)
+parse_tree = parser.parse()
+# print(parse_tree)
 
-interpreter = Interpreter(ast)
-interpreter.execute()
+
+json_object = json.dumps(parse_tree, indent=2)
+print(json_object)
+# with open("ParseTree.json", "w") as outfile:
+#     outfile.write(json_object)
+
+
+def json_to_tree_graph(json_data, graph=None, parent="root", level=0, level_nodes=None):
+    if graph is None:
+        graph = nx.DiGraph() 
+        level_nodes = defaultdict(list)
+
+    level_nodes[level].append(parent)
+
+    if isinstance(json_data, dict):
+        for key, value in json_data.items():
+            child_node = f"{parent}.{key}"  
+            graph.add_node(child_node, label=key)  
+            graph.add_edge(parent, child_node) 
+            json_to_tree_graph(value, graph, child_node, level + 1, level_nodes)
+
+    elif isinstance(json_data, list):
+        for index, item in enumerate(json_data):
+            child_node = f"{parent}[{index}]"  
+            graph.add_node(child_node, label=f"Item {index}")  
+            graph.add_edge(parent, child_node)  
+            json_to_tree_graph(item, graph, child_node, level + 1, level_nodes)
+  
+    else:
+        child_node = f"{parent}:{json_data}"  
+        graph.add_node(child_node, label=str(json_data)) 
+        graph.add_edge(parent, child_node)  
+        level_nodes[level + 1].append(child_node)
+
+    return graph, level_nodes
+
+def calculate_positions(level_nodes, screen_width=10):
+    positions = {}
+    max_level = max(level_nodes.keys())
+    for level, nodes in level_nodes.items():
+        num_nodes = len(nodes)
+        spacing = screen_width / (num_nodes + 1)  
+        for i, node in enumerate(nodes):
+            x = (i + 1) * spacing  
+            y = -level 
+            positions[node] = (x, y)
+    return positions
+
+def visualize_tree_centered(graph, positions):
+    labels = nx.get_node_attributes(graph, 'label') 
+
+    # Draw the graph
+    plt.figure(figsize=(12, 8))
+    nx.draw(graph, positions, with_labels=False, node_color="lightblue", node_size=2000, arrows=False)
+    nx.draw_networkx_labels(graph, positions, labels, font_size=10, font_color="black")
+    plt.title("Centered and Evenly Spaced Tree")
+    plt.show()
+
+
+
+json_obj = json.loads(json_object)
+
+tree_graph, tree_levels = json_to_tree_graph(json_obj)
+
+tree_positions = calculate_positions(tree_levels, screen_width=12)
+
+visualize_tree_centered(tree_graph, tree_positions)
