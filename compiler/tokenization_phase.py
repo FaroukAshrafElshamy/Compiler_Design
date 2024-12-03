@@ -1,7 +1,7 @@
 import re
 from colorama import Fore
 
-def main(file_path, num):
+def main(file_path, num = 2):
     # Define token categories with regular expressions 
     TOKEN_SPECIFICATION = [
         ('KEYWORD', r'\b(if|else)\b'),                   # Keywords
@@ -38,6 +38,7 @@ def main(file_path, num):
     
     code = read_file(file_path)
     tokens = lexer(code)
+    
     if num == 1:
         with open("compiler/Output/tokens_output.txt", "w") as file:
             file.write("Tokens:\n")
