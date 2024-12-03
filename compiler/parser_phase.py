@@ -1,4 +1,4 @@
-from tokenization_phase import lexer, read_file
+from .tokenization_phase import main
 import json
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -70,11 +70,9 @@ class Parser:
             return token[1]
 
         
-file_path = './constants/code.txt'
+file_path = 'constants/code.txt'
 
-code = read_file(file_path)
-
-tokens = lexer(code)
+code, tokens = main(file_path)
 parser = Parser(tokens)
 # print(parser.tokens)
 parse_tree = parser.parse()
@@ -82,7 +80,7 @@ parse_tree = parser.parse()
 
 
 json_object = json.dumps(parse_tree, indent=2)
-print(json_object)
+# print(json_object)
 # with open("ParseTree.json", "w") as outfile:
 #     outfile.write(json_object)
 
@@ -130,7 +128,6 @@ def calculate_positions(level_nodes, screen_width=10):
 
 def visualize_tree_centered(graph, positions):
     labels = nx.get_node_attributes(graph, 'label') 
-
     # Draw the graph
     plt.figure(figsize=(12, 8))
     nx.draw(graph, positions, with_labels=False, node_color="lightblue", node_size=2000, arrows=False)
@@ -138,12 +135,11 @@ def visualize_tree_centered(graph, positions):
     plt.title("Centered and Evenly Spaced Tree")
     plt.show()
 
-
-
 json_obj = json.loads(json_object)
 
 tree_graph, tree_levels = json_to_tree_graph(json_obj)
 
 tree_positions = calculate_positions(tree_levels, screen_width=12)
 
-visualize_tree_centered(tree_graph, tree_positions)
+def visulize():
+    visualize_tree_centered(tree_graph, tree_positions)
