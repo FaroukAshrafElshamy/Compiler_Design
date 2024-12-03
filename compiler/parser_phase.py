@@ -84,7 +84,7 @@ json_object = json.dumps(parse_tree, indent=2)
 # with open("ParseTree.json", "w") as outfile:
 #     outfile.write(json_object)
 
-
+#--------------------------------------------------------------------------------------
 def json_to_tree_graph(json_data, graph=None, parent="root", level=0, level_nodes=None):
     if graph is None:
         graph = nx.DiGraph() 

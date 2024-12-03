@@ -1,31 +1,21 @@
 Tokens:
 Type                          Lexeme
-IDENTIFIER                    num
+IDENTIFIER                    x
 OPERATOR                      =
 NUMBER                        5
-IDENTIFIER                    name
+IDENTIFIER                    y
 OPERATOR                      =
-STRING_LITERAL                "khaled"
-IDENTIFIER                    age
-OPERATOR                      =
-NUMBER                        23
+NUMBER                        6
 KEYWORD                       if
 PUNCTUATION                   (
-IDENTIFIER                    num
+IDENTIFIER                    x
 OPERATOR                      >
-NUMBER                        7
+IDENTIFIER                    y
 PUNCTUATION                   )
 PUNCTUATION                   :
-IDENTIFIER                    x
-OPERATOR                      =
-NUMBER                        3
-KEYWORD                       else
-PUNCTUATION                   :
-IDENTIFIER                    num
-OPERATOR                      =
-NUMBER                        2
-IDENTIFIER                    x
-OPERATOR                      =
-NUMBER                        8
+IDENTIFIER                    print
+PUNCTUATION                   (
+STRING_LITERAL                "hello world"
+PUNCTUATION                   )
 
-Total number of tokens: 27
+Total number of tokens: 17
