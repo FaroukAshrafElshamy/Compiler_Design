@@ -1,4 +1,2 @@
 name,type,size,dim,lineDeclared,lineOfUsage
-x,null,null,0,1,[4]
-y,null,null,0,2,[4]
-print,null,null,0,5,[]
+x,Num,4,0,1,[]
