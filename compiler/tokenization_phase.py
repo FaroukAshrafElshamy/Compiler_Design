@@ -7,7 +7,6 @@ def main(file_path, num = 2):
         ('KEYWORD', r'\b(if|else)\b'),                   # Keywords
         ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),       # Identifiers
         ('NUMBER', r'\b\d+\b'),                          # Numbers
-        # ('NUMBER', r'^-?\d+(\.\d+)?$'),
         ('OPERATOR', r'[+\-=<>]+'),                      # Operators
         ("STRING_LITERAL", r"\".*?\""),                  # Strings
         ("PUNCTUATION", r"[():]"),                     # Punctuation

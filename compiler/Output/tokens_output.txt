@@ -1,7 +1,43 @@
 Tokens:
 Type                          Lexeme
+IDENTIFIER                    num
+OPERATOR                      =
+NUMBER                        5
+IDENTIFIER                    name
+OPERATOR                      =
+STRING_LITERAL                "khaled abdo"
+IDENTIFIER                    nikname
+OPERATOR                      =
+STRING_LITERAL                "loda"
+IDENTIFIER                    age
+OPERATOR                      =
+NUMBER                        23
 IDENTIFIER                    x
 OPERATOR                      =
-NUMBER                        551
+NUMBER                        8
+KEYWORD                       if
+PUNCTUATION                   (
+IDENTIFIER                    num
+OPERATOR                      >
+NUMBER                        7
+PUNCTUATION                   )
+PUNCTUATION                   :
+IDENTIFIER                    x
+OPERATOR                      =
+NUMBER                        3
+KEYWORD                       else
+PUNCTUATION                   :
+IDENTIFIER                    num
+OPERATOR                      =
+NUMBER                        2
+IDENTIFIER                    x
+OPERATOR                      =
+NUMBER                        43
+IDENTIFIER                    age
+OPERATOR                      =
+IDENTIFIER                    num
+IDENTIFIER                    name
+OPERATOR                      =
+IDENTIFIER                    nikname
 
-Total number of tokens: 3
+Total number of tokens: 39

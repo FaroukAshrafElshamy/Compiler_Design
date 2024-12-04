@@ -1,2 +1,6 @@
 name,type,size,dim,lineDeclared,lineOfUsage
-x,Num,4,0,1,[]
+num,Num,2,0,2,"[8, 11, 14]"
+name,Str,13,0,3,"[4, 15]"
+nikname,Str,6,0,4,[15]
+age,Num,2,0,5,[14]
+x,Num,2,0,6,"[9, 12]"

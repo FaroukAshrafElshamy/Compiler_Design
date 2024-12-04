@@ -62,13 +62,14 @@ def symbolTalbe(file_path):
         try:
             value = int(value)
             iden_type = "Num"
-            iden_size = 4
+            iden_size = 2
         except:
             iden_type = "Str"
-            iden_size = len(value)
+            if isinstance(value,str):
+                iden_size = len(value)
         # if isinstance(value, int):
         #     iden_type = "Num"
-        #     iden_size = 4
+        #     iden_size = 2
         # else:
         #     iden_type = "Str"
         #     iden_size = len(value)
