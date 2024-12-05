@@ -70,7 +70,6 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         global file_path
         if not self.check:
             file_path, _ = QFileDialog.getSaveFileName(self, "Save Text File", "", "Text Files (*.txt);;All Files (*)")
-            self.Run()
             self.fileName.setText(file_path)
             self.check = True
         else:
