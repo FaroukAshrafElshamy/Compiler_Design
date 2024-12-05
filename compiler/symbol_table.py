@@ -1,6 +1,8 @@
 
 from .tokenization_phase import main
 import pandas as pd
+import json
+
 
 def symbolTalbe(file_path):
 
@@ -14,14 +16,15 @@ def symbolTalbe(file_path):
         return identifiers
 
 
-    def numbers_file():
+    def indexed_the_sourceCode():
         lines = []
         with open(file_path, "r") as file:
                 for line_content in file:
                     lines.append(line_content.strip())
         return lines
+    
     def get_line_appears(iden):
-        lines = numbers_file()
+        lines = indexed_the_sourceCode()
         lines_for_IDEN = []
         for each in lines:
             if iden in each:
@@ -30,7 +33,47 @@ def symbolTalbe(file_path):
         lines_of_usage = lines_for_IDEN[1:]
         return line_declared , lines_of_usage
 
+    def getTypeAndSizeOfIden(iden):
+        with open('compiler\Output\ParseTree.json', 'r') as file:
+            data = json.load(file)  
+            # print(data)
+            return data
+    
+    def find_value_of_iden(iden):
+        data = getTypeAndSizeOfIden(iden)
+        if isinstance(data, dict):
+            for key, value in data.items():
+                if key == '<program>':
+                    for item in value:
+                        if isinstance(item, dict) and '<variable_declaration>' in item:
+                            identifier = item['<variable_declaration>'].get('<identifier>', None)
+                            if identifier == iden:
+                                expression = item['<variable_declaration>'].get('<expression>', {})
+                                if expression.get('<digit>', None)  == None:
+                                    return expression.get('<letter>', None)  
+                                return expression.get('<digit>', None)  
+        return None
 
+  
+    def determineTheTypeAndTheSizeOfTheIden(iden):
+        value = find_value_of_iden(iden)
+        iden_type = ""
+        iden_size = 0
+        try:
+            value = int(value)
+            iden_type = "Num"
+            iden_size = 2
+        except:
+            iden_type = "Str"
+            if isinstance(value,str):
+                iden_size = len(value)
+        # if isinstance(value, int):
+        #     iden_type = "Num"
+        #     iden_size = 2
+        # else:
+        #     iden_type = "Str"
+        #     iden_size = len(value)
+        return iden_type , iden_size    
 
     def show_the_code_indexed():
         with open(file_path, "r") as file:
@@ -50,12 +93,25 @@ def symbolTalbe(file_path):
     symbols = []
 
     for iden in get_the_identifiers_only():
-        symbols.append(SymbolTalbe(iden,"null","null",0,get_line_appears(iden)[0],get_line_appears(iden)[1]))
+        symbols.append(SymbolTalbe(iden,
+                                   determineTheTypeAndTheSizeOfTheIden(iden)[0],
+                                   determineTheTypeAndTheSizeOfTheIden(iden)[1],
+                                   0,
+                                   get_line_appears(iden)[0],
+                                   get_line_appears(iden)[1]
+                                   )
+                       )
 
     data = [vars(symbol) for symbol in symbols]
     df = pd.DataFrame(data)
-    # print(df)
+    print(df)
 
 
     # save on the csv file
     df.to_csv('compiler/Output/symbol_table.csv', index=False)
+
+
+
+if __name__ == "__main__":
+    # symbolTalbe("cof.txt")
+    symbolTalbe('constants/code.txt')

@@ -12,6 +12,116 @@
       "<variable_declaration>": {
         "<identifier>": "f",
         "<expression>": {
+<<<<<<< HEAD
+          "<letter>": "\"farpou\""
+=======
+          "<letter>": "\"khaled abdo\""
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "nikname",
+        "<expression>": {
+          "<letter>": "\"loda\""
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "age",
+        "<expression>": {
+          "<digit>": "23"
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "x",
+        "<expression>": {
+          "<digit>": "8"
+        }
+      }
+    },
+    {
+      "<condition_statement>": {
+        "<if_statment>": {
+          "<condition>": {
+            "<left>": {
+              "<identifier>": "num"
+            },
+            "<operator>": ">",
+            "<right>": {
+              "<digit>": "7"
+            }
+          }
+        },
+        "<true_statment>": {
+          "<variable_declaration>": {
+            "<identifier>": "x",
+            "<expression>": {
+              "<digit>": "3"
+            }
+          }
+        },
+        "<false_statment>": {
+          "<variable_declaration>": {
+            "<identifier>": "num",
+            "<expression>": {
+              "<digit>": "2"
+            }
+          }
+>>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "x",
+        "<expression>": {
+<<<<<<< HEAD
+          "<digit>": "00"
+=======
+          "<digit>": "43"
+>>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+<<<<<<< HEAD
+        "<identifier>": "f",
+        "<expression>": {
+          "<letter>": "\"fa\""
+=======
+        "<identifier>": "age",
+        "<expression>": {
+          "<identifier>": "num"
+>>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+<<<<<<< HEAD
+        "<identifier>": "f",
+        "<expression>": {
+          "<letter>": "\"fa\""
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "x",
+        "<expression>": {
+          "<digit>": "00"
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "f",
+        "<expression>": {
           "<letter>": "\"farpou\""
         }
       }
@@ -37,46 +147,11 @@
         "<identifier>": "f",
         "<expression>": {
           "<letter>": "\"fa\""
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "x",
+=======
+        "<identifier>": "name",
         "<expression>": {
-          "<digit>": "00"
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "f",
-        "<expression>": {
-          "<letter>": "\"farpou\""
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "x",
-        "<expression>": {
-          "<digit>": "00"
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "f",
-        "<expression>": {
-          "<letter>": "\"fa\""
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "f",
-        "<expression>": {
-          "<letter>": "\"fa\""
+          "<identifier>": "nikname"
+>>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
         }
       }
     }

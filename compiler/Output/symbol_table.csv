@@ -1,3 +1,11 @@
 name,type,size,dim,lineDeclared,lineOfUsage
+<<<<<<< HEAD
 x,null,null,0,1,"[1, 1, 1]"
 f,null,null,0,2,"[4, 4, 2, 4, 4]"
+=======
+num,Num,2,0,2,"[8, 11, 14]"
+name,Str,13,0,3,"[4, 15]"
+nikname,Str,6,0,4,[15]
+age,Num,2,0,5,[14]
+x,Num,2,0,6,"[9, 12]"
+>>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099

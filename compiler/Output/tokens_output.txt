@@ -1,7 +1,8 @@
 Tokens:
 Type                          Lexeme
-IDENTIFIER                    x
+IDENTIFIER                    num
 OPERATOR                      =
+<<<<<<< HEAD
 NUMBER                        00
 IDENTIFIER                    f
 OPERATOR                      =
@@ -32,3 +33,44 @@ OPERATOR                      =
 STRING_LITERAL                "fa"
 
 Total number of tokens: 30
+=======
+NUMBER                        5
+IDENTIFIER                    name
+OPERATOR                      =
+STRING_LITERAL                "khaled abdo"
+IDENTIFIER                    nikname
+OPERATOR                      =
+STRING_LITERAL                "loda"
+IDENTIFIER                    age
+OPERATOR                      =
+NUMBER                        23
+IDENTIFIER                    x
+OPERATOR                      =
+NUMBER                        8
+KEYWORD                       if
+PUNCTUATION                   (
+IDENTIFIER                    num
+OPERATOR                      >
+NUMBER                        7
+PUNCTUATION                   )
+PUNCTUATION                   :
+IDENTIFIER                    x
+OPERATOR                      =
+NUMBER                        3
+KEYWORD                       else
+PUNCTUATION                   :
+IDENTIFIER                    num
+OPERATOR                      =
+NUMBER                        2
+IDENTIFIER                    x
+OPERATOR                      =
+NUMBER                        43
+IDENTIFIER                    age
+OPERATOR                      =
+IDENTIFIER                    num
+IDENTIFIER                    name
+OPERATOR                      =
+IDENTIFIER                    nikname
+
+Total number of tokens: 39
+>>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
