@@ -16,6 +16,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.setWindowTitle("CodeX")
         self.setWindowIcon(QIcon('resources/compiler(1).png'))
         self.TabSize(7) # Tab Size
+        self.check = False
 
     # Connect Buttons
         self.ExplainButton.clicked.connect(self.S_Explain)
@@ -26,10 +27,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.ClearButton.clicked.connect(self.S_Clear)
         self.Open_file.clicked.connect(self.S_OpenFile)
         self.Save_file.clicked.connect(self.S_SaveFile)
-        self.RunButton.clicked.connect(self.OutputTokens)
-        self.RunButton.clicked.connect(self.OutputFirst)
-        self.RunButton.clicked.connect(self.OutputSymboleTable)
-        self.RunButton.clicked.connect(self.OutputParse)
+        self.RunButton.clicked.connect(self.Run)
         self.FigureButton.clicked.connect(visulize)
         
 
@@ -57,29 +55,32 @@ class MySideBar(QMainWindow, Ui_MainWindow):
     def S_OpenFile(self):
         global file_path
         file_path, _ = QFileDialog.getOpenFileName(self, "Open Text File", "", "Text Files (*.txt);;All Files (*)")
-        main(file_path, 1)
-        symbolTalbe(file_path)
         if file_path:
             try:
+                self.check = True
                 with open(file_path, "r", encoding="utf-8") as file:
                     content = file.read()
                 self.textEdit.setPlainText(content)
                 self.fileName.setText(file_path)
+                self.GetOutput(file_path) 
             except Exception as e:
                 self.textEdit.setPlainText(f"Failed to load the file.\nError: {e}")
 
     def S_SaveFile(self):
-        file_path2, _ = QFileDialog.getSaveFileName(self, "Save Text File", "", "Text Files (*.txt);;All Files (*)")
-        if file_path2:
+        global file_path
+        if not self.check:
+            file_path, _ = QFileDialog.getSaveFileName(self, "Save Text File", "", "Text Files (*.txt);;All Files (*)")
+            self.Run()
+            self.fileName.setText(file_path)
+            self.check = True
+        else:
             try:
-                with open(file_path2, "w", encoding="utf-8") as file:
+                with open(file_path, "w", encoding="utf-8") as file:
                     content = self.textEdit.toPlainText()
                     file.write(content)
-                main(file_path2, 1)
-                symbolTalbe(file_path2)
-                parser(file_path2)
+                self.GetOutput(file_path)
             except Exception as e:
-                self.text_edit.setPlainText(f"Failed to save the file.\nError: {e}")
+                self.textEdit.setPlainText(f"Failed to save the file.\nError: {e}")
 
     def TabSize(self, space_count):
         font_metrics = self.textEdit.fontMetrics()
@@ -137,7 +138,18 @@ class MySideBar(QMainWindow, Ui_MainWindow):
                             self.tableWidget.setItem(row_idx, col_idx, QTableWidgetItem(cell))
             except Exception as e:
                 print(f"Error reading file: {e}")
+    
+    def GetOutput(self, file_path):
+        main(file_path, 1)
+        parser(file_path)
+        First()
+        symbolTalbe(file_path)
 
+    def Run(self):
+        self.OutputTokens()
+        self.OutputFirst()
+        self.OutputParse()
+        self.OutputSymboleTable()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
