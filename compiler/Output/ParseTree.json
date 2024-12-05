@@ -2,56 +2,17 @@
   "<program>": [
     {
       "<variable_declaration>": {
-        "<identifier>": "num",
+        "<identifier>": "x",
         "<expression>": {
-          "<digit>": "5"
+          "<digit>": "00"
         }
       }
     },
     {
       "<variable_declaration>": {
-        "<identifier>": "name",
+        "<identifier>": "f",
         "<expression>": {
-          "<letter>": "\"khaled\""
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "age",
-        "<expression>": {
-          "<digit>": "23"
-        }
-      }
-    },
-    {
-      "<condition_statement>": {
-        "<if_statment>": {
-          "<condition>": {
-            "<left>": {
-              "<identifier>": "num"
-            },
-            "<operator>": ">",
-            "<right>": {
-              "<digit>": "7"
-            }
-          }
-        },
-        "<true_statment>": {
-          "<variable_declaration>": {
-            "<identifier>": "x",
-            "<expression>": {
-              "<digit>": "3"
-            }
-          }
-        },
-        "<false_statment>": {
-          "<variable_declaration>": {
-            "<identifier>": "num",
-            "<expression>": {
-              "<digit>": "2"
-            }
-          }
+          "<letter>": "\"farpou\""
         }
       }
     },
@@ -59,7 +20,63 @@
       "<variable_declaration>": {
         "<identifier>": "x",
         "<expression>": {
-          "<digit>": "8"
+          "<digit>": "00"
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "f",
+        "<expression>": {
+          "<letter>": "\"fa\""
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "f",
+        "<expression>": {
+          "<letter>": "\"fa\""
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "x",
+        "<expression>": {
+          "<digit>": "00"
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "f",
+        "<expression>": {
+          "<letter>": "\"farpou\""
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "x",
+        "<expression>": {
+          "<digit>": "00"
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "f",
+        "<expression>": {
+          "<letter>": "\"fa\""
+        }
+      }
+    },
+    {
+      "<variable_declaration>": {
+        "<identifier>": "f",
+        "<expression>": {
+          "<letter>": "\"fa\""
         }
       }
     }
