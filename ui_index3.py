@@ -324,8 +324,8 @@ class Ui_MainWindow(object):
         icon7 = QIcon()
         icon7.addFile(u":/icon/resources/open-folder.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Open_file.setIcon(icon7)
-        self.Open_file.setCheckable(True)
-        self.Open_file.setAutoExclusive(False)
+        self.Open_file.setCheckable(False)
+        self.Open_file.setAutoExclusive(True)
 
         self.horizontalLayout_8.addWidget(self.Open_file)
 

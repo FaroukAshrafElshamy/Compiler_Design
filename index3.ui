@@ -617,10 +617,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <normaloff>:/icon/resources/open-folder.png</normaloff>:/icon/resources/open-folder.png</iconset>
                    </property>
                    <property name="checkable">
-                    <bool>true</bool>
+                    <bool>false</bool>
                    </property>
                    <property name="autoExclusive">
-                    <bool>false</bool>
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -811,7 +811,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        </property>
                       </spacer>
                      </item>
-                     <item alignment="">
+                     <item>
                       <widget class="QPushButton" name="FigureButton">
                        <property name="minimumSize">
                         <size>
