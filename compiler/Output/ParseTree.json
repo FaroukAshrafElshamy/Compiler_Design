@@ -2,19 +2,16 @@
   "<program>": [
     {
       "<variable_declaration>": {
-        "<identifier>": "x",
+        "<identifier>": "num",
         "<expression>": {
-          "<digit>": "00"
+          "<digit>": "5"
         }
       }
     },
     {
       "<variable_declaration>": {
-        "<identifier>": "f",
+        "<identifier>": "name",
         "<expression>": {
-<<<<<<< HEAD
-          "<letter>": "\"farpou\""
-=======
           "<letter>": "\"khaled abdo\""
         }
       }
@@ -71,7 +68,6 @@
               "<digit>": "2"
             }
           }
->>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
         }
       }
     },
@@ -79,79 +75,15 @@
       "<variable_declaration>": {
         "<identifier>": "x",
         "<expression>": {
-<<<<<<< HEAD
-          "<digit>": "00"
-=======
-          "<digit>": "43"
->>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
+          "<digit>": "8"
         }
       }
     },
     {
       "<variable_declaration>": {
-<<<<<<< HEAD
-        "<identifier>": "f",
+        "<identifier>": "z",
         "<expression>": {
-          "<letter>": "\"fa\""
-=======
-        "<identifier>": "age",
-        "<expression>": {
-          "<identifier>": "num"
->>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-<<<<<<< HEAD
-        "<identifier>": "f",
-        "<expression>": {
-          "<letter>": "\"fa\""
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "x",
-        "<expression>": {
-          "<digit>": "00"
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "f",
-        "<expression>": {
-          "<letter>": "\"farpou\""
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "x",
-        "<expression>": {
-          "<digit>": "00"
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "f",
-        "<expression>": {
-          "<letter>": "\"fa\""
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "f",
-        "<expression>": {
-          "<letter>": "\"fa\""
-=======
-        "<identifier>": "name",
-        "<expression>": {
-          "<identifier>": "nikname"
->>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
+          "<digit>": "3"
         }
       }
     }
