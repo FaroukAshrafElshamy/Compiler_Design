@@ -1,59 +1,53 @@
 
 def First():
-    def terminal(obj):
-        return obj not in GRAMMER or obj in ["[A-Z]", "[a-z]", "[0-9]", "_"]
+    def CalculateFirst(obj):
+        if obj in First_Dic:
+            return First_Dic[obj]
+        First_Dic[obj] = set()
 
-    def first(obj):
-
-        if obj in FIRST:
-            return FIRST[obj]
-        FIRST[obj] = set()
-
-        for product in GRAMMER.get(obj, []):
-            grammers = product.split()
-            for txt in grammers:
-                if terminal(txt):
-                    if txt == "[A-Z]":
-                        FIRST[obj].update(chr(c) for c in range(ord('A'), ord('Z') + 1))
-                    elif txt == "[a-z]":
-                        FIRST[obj].update(chr(c) for c in range(ord('a'), ord('z') + 1))
-                    elif txt == "[0-9]":
-                        FIRST[obj].update(chr(c) for c in range(ord('0'), ord('9') + 1))
-                    elif txt == "_":
-                        FIRST[obj].add("_")
-                    elif txt == "(":
-                        FIRST[obj].add("(")
-                    else:
-                        FIRST[obj].add(txt)
+        for production in Grammar.get(obj, []):
+            rules = production.split()
+            for rule in rules:
+                if isTerminal(rule):
+                    First_Dic[obj].add(rule)
                     break
                 else:
-                    FIRST[obj].update(first(txt) - {"\""})
-                    if "" not in FIRST[txt]:
+                    First_Dic[obj].update(CalculateFirst(rule) - {""})
+                    if "" not in First_Dic[rule]:
                         break
-        return FIRST[obj]
+        return First_Dic[obj]
 
-    GRAMMER = {
-        "<program>": ["<statement>"],
-        "<statement>": ["<variable_declaration>", "<condition_statement>"],
-        "<variable_declaration>": ["<identifier> = <expression>"],
-        "<condition_statement>": ["if ( <condition> ) : <statement>", "else : <statement>"],
-        "<condition>": ["<expression> <comparison_operator> <expression>"],
-        "<comparison_operator>": ["==", "=!", "<", ">", "<=", ">="],
-        "<expression>": ["<identifier>", "<literal>"],
-        "<literal>": ["<digit>", "<string_literal>"],
-        "<string_literal>" : [ "\" <letter>* \""],
-        "<identifier>": ["<letter>", "<letter> <all_list>"],
-        "<all_list>": ["<letter>", "<digit>", "_"],
-        "<digit>": ["[0:9]"],
-        "<letter>": ["[a-zA-Z]"],
-    }
+    def isTerminal(obj):
+        if obj not in Grammar or obj in ["[A-Z]", "[a-z]", "[0-9]", "_"]:
+            return True
+        else:
+            return False
 
-    FIRST = {}
-    for non_terminal in GRAMMER:
-        first(non_terminal)
+    First_Dic = {}
+    Grammar = {
+            "<program>": ["<statement>"],
+            "<statement>": ["<variable_declaration>", "<condition_statement>"],
+            "<variable_declaration>": ["<identifier> = <expression>"],
+            "<condition_statement>": ["if ( <condition> ) : <statement>", "else : <statement>"],
+            "<condition>": ["<expression> <comparison_operator> <expression>"],
+            "<comparison_operator>": ["==", "=!", "<", ">", "<=", ">="],
+            "<expression>": ["<identifier>", "<literal>"],
+            "<literal>": ["<digit>", "<string_literal>"],
+            "<string_literal>" : [ "<letter>"],
+            "<identifier>": ["<letter>", "<letter> <all_list>"],
+            "<all_list>": ["<letter>", "<digit>", "_"],
+            "<digit>": ["[0:9]"],
+            "<letter>": ["[a-z]", "[A-Z]"],
+        }
+
+    for non_terminal in Grammar:
+        CalculateFirst(non_terminal)
 
     output_file = "compiler/Output/FIRST_output.txt"
     with open(output_file, "w", encoding="utf-8") as file:
-        for non_terminal, s_first in FIRST.items():
-            line = f"First({non_terminal})\t\t ==> {sorted(s_first)}\n"
+        for non_terminal, s_first in First_Dic.items():
+            line = f"First({non_terminal[1:len(non_terminal)-1]})".ljust(29) + f"==>  {sorted(s_first)}\n"
             file.write(line)
+
+if __name__ == "__main__":
+    First()
