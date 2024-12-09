@@ -34,7 +34,7 @@ def symbolTalbe(file_path):
         return line_declared , lines_of_usage
 
     def getTypeAndSizeOfIden(iden):
-        with open('compiler\Output\ParseTree.json', 'r') as file:
+        with open('compiler/Output/ParseTree.json', 'r') as file:
             data = json.load(file)  
             # print(data)
             return data
@@ -104,7 +104,7 @@ def symbolTalbe(file_path):
 
     data = [vars(symbol) for symbol in symbols]
     df = pd.DataFrame(data)
-    print(df)
+    # print(df)
 
 
     # save on the csv file
