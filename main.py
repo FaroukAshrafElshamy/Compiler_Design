@@ -76,6 +76,7 @@ class MySideBar(QMainWindow, Ui_MainWindow):
 
 
     def Run(self):
+        self.S_SaveFile()
         self.OutputTokens()
         self.OutputFirst()
         self.OutputParse()
