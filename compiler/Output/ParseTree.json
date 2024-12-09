@@ -2,88 +2,17 @@
   "<program>": [
     {
       "<variable_declaration>": {
-        "<identifier>": "num",
-        "<expression>": {
-          "<digit>": "5"
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "name",
-        "<expression>": {
-          "<letter>": "\"khaled abdo\""
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "nikname",
-        "<expression>": {
-          "<letter>": "\"loda\""
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "age",
-        "<expression>": {
-          "<digit>": "23"
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
         "<identifier>": "x",
         "<expression>": {
-          "<digit>": "8"
-        }
-      }
-    },
-    {
-      "<condition_statement>": {
-        "<if_statment>": {
-          "<condition>": {
-            "<left>": {
-              "<identifier>": "num"
-            },
-            "<operator>": ">",
-            "<right>": {
-              "<digit>": "7"
-            }
-          }
-        },
-        "<true_statment>": {
-          "<variable_declaration>": {
-            "<identifier>": "x",
-            "<expression>": {
-              "<digit>": "3"
-            }
-          }
-        },
-        "<false_statment>": {
-          "<variable_declaration>": {
-            "<identifier>": "num",
-            "<expression>": {
-              "<digit>": "2"
-            }
-          }
+          "<digit>": "1"
         }
       }
     },
     {
       "<variable_declaration>": {
-        "<identifier>": "x",
+        "<identifier>": "y",
         "<expression>": {
-          "<digit>": "8"
-        }
-      }
-    },
-    {
-      "<variable_declaration>": {
-        "<identifier>": "z",
-        "<expression>": {
-          "<digit>": "3"
+          "<digit>": "2"
         }
       }
     }
