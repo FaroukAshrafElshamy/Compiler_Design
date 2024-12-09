@@ -2,38 +2,6 @@ Tokens:
 Type                          Lexeme
 IDENTIFIER                    num
 OPERATOR                      =
-<<<<<<< HEAD
-NUMBER                        00
-IDENTIFIER                    f
-OPERATOR                      =
-STRING_LITERAL                "farpou"
-IDENTIFIER                    x
-OPERATOR                      =
-NUMBER                        00
-IDENTIFIER                    f
-OPERATOR                      =
-STRING_LITERAL                "fa"
-IDENTIFIER                    f
-OPERATOR                      =
-STRING_LITERAL                "fa"
-IDENTIFIER                    x
-OPERATOR                      =
-NUMBER                        00
-IDENTIFIER                    f
-OPERATOR                      =
-STRING_LITERAL                "farpou"
-IDENTIFIER                    x
-OPERATOR                      =
-NUMBER                        00
-IDENTIFIER                    f
-OPERATOR                      =
-STRING_LITERAL                "fa"
-IDENTIFIER                    f
-OPERATOR                      =
-STRING_LITERAL                "fa"
-
-Total number of tokens: 30
-=======
 NUMBER                        5
 IDENTIFIER                    name
 OPERATOR                      =
@@ -64,13 +32,9 @@ OPERATOR                      =
 NUMBER                        2
 IDENTIFIER                    x
 OPERATOR                      =
-NUMBER                        43
-IDENTIFIER                    age
+NUMBER                        8
+IDENTIFIER                    z
 OPERATOR                      =
-IDENTIFIER                    num
-IDENTIFIER                    name
-OPERATOR                      =
-IDENTIFIER                    nikname
+NUMBER                        3
 
-Total number of tokens: 39
->>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
+Total number of tokens: 36
