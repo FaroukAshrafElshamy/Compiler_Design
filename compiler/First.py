@@ -1,5 +1,5 @@
-
 def First():
+
     def CalculateFirst(obj):
         if obj in First_Dic:
             return First_Dic[obj]
@@ -16,6 +16,7 @@ def First():
                     if "" not in First_Dic[rule]:
                         break
         return First_Dic[obj]
+
 
     def isTerminal(obj):
         if obj not in Grammar or obj in ["[A-Z]", "[a-z]", "[0-9]", "_"]:
@@ -40,6 +41,7 @@ def First():
             "<letter>": ["[a-z]", "[A-Z]"],
         }
 
+
     for non_terminal in Grammar:
         CalculateFirst(non_terminal)
 
@@ -48,6 +50,7 @@ def First():
         for non_terminal, s_first in First_Dic.items():
             line = f"First({non_terminal[1:len(non_terminal)-1]})".ljust(29) + f"==>  {sorted(s_first)}\n"
             file.write(line)
+
 
 if __name__ == "__main__":
     First()

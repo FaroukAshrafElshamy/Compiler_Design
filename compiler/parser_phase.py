@@ -1,8 +1,9 @@
 from .tokenization_phase import main
-import json
-import networkx as nx
-import matplotlib.pyplot as plt
 from collections import defaultdict
+import matplotlib.pyplot as plt
+import networkx as nx
+import json
+
 
 class Parser:
     def __init__(self, tokens):
@@ -59,17 +60,15 @@ class Parser:
         if self.pos >= len(self.tokens):
             return False
         token_kind, token_value = self.tokens[self.pos]
-        # print("matching", kind, value, token_kind, token_value)
         return token_kind == kind and (value is None or token_value == value)
 
     def consume(self, kind, value=None):
         if self.match(kind, value):
             token = self.tokens[self.pos]
-            # print("%s: %s" % (kind, value))
             self.pos += 1
             return token[1]
 
-#--------------------------------------------------------------------------------------
+
 def json_to_tree_graph(json_data, graph=None, parent="root", level=0, level_nodes=None):
     if graph is None:
         graph = nx.DiGraph() 
@@ -96,8 +95,8 @@ def json_to_tree_graph(json_data, graph=None, parent="root", level=0, level_node
         graph.add_node(child_node, label=str(json_data)) 
         graph.add_edge(parent, child_node)  
         level_nodes[level + 1].append(child_node)
-
     return graph, level_nodes
+
 
 def calculate_positions(level_nodes, screen_width=10):
     positions = {}
@@ -110,6 +109,7 @@ def calculate_positions(level_nodes, screen_width=10):
             y = -level 
             positions[node] = (x, y)
     return positions
+
 
 def visualize_tree_centered(graph, positions):
     labels = nx.get_node_attributes(graph, 'label') 
@@ -125,20 +125,17 @@ def parser(file_path):
     code, tokens = main(file_path)
     parser = Parser(tokens)
     parse_tree = parser.parse()
-    # print(parse_tree)
     json_object = json.dumps(parse_tree, indent=2)
-    # print(json_object)
-    # print(parse_tree)
     json_obj = json.loads(json_object)
     tree_graph, tree_levels = json_to_tree_graph(json_obj)
     tree_positions = calculate_positions(tree_levels, screen_width=12)
     with open("compiler/Output/ParseTree.json", "w") as outfile:
         outfile.write(json_object)
 
+
 def visulize():
     visualize_tree_centered(tree_graph, tree_positions)
 
 if __name__ == "__main__":
     parser('constants/code.txt')
-    # parser('cof.txt')
     visulize()

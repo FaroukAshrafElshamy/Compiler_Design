@@ -1,4 +1,3 @@
-
 from .tokenization_phase import main
 import pandas as pd
 import json
@@ -22,7 +21,8 @@ def symbolTalbe(file_path):
                 for line_content in file:
                     lines.append(line_content.strip())
         return lines
-    
+
+
     def get_line_appears(iden):
         lines = indexed_the_sourceCode()
         lines_for_IDEN = []
@@ -33,12 +33,13 @@ def symbolTalbe(file_path):
         lines_of_usage = lines_for_IDEN[1:]
         return line_declared , lines_of_usage
 
+
     def getTypeAndSizeOfIden(iden):
         with open('compiler/Output/ParseTree.json', 'r') as file:
             data = json.load(file)  
-            # print(data)
             return data
-    
+
+
     def find_value_of_iden(iden):
         data = getTypeAndSizeOfIden(iden)
         if isinstance(data, dict):
@@ -67,12 +68,6 @@ def symbolTalbe(file_path):
             iden_type = "Str"
             if isinstance(value,str):
                 iden_size = len(value)
-        # if isinstance(value, int):
-        #     iden_type = "Num"
-        #     iden_size = 2
-        # else:
-        #     iden_type = "Str"
-        #     iden_size = len(value)
         return iden_type , iden_size    
 
     def show_the_code_indexed():
@@ -104,13 +99,9 @@ def symbolTalbe(file_path):
 
     data = [vars(symbol) for symbol in symbols]
     df = pd.DataFrame(data)
-    # print(df)
-
 
     # save on the csv file
     df.to_csv('compiler/Output/symbol_table.csv', index=False)
-
-
 
 if __name__ == "__main__":
     # symbolTalbe("cof.txt")

@@ -1,10 +1,10 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem
-from ui_index3 import Ui_MainWindow
 from compiler.tokenization_phase import main
 from compiler.symbol_table import symbolTalbe
 from compiler.parser_phase import visulize, parser
-from PySide6.QtGui import QIcon
+from ui_index3 import Ui_MainWindow
 from compiler.First import First
+from PySide6.QtGui import QIcon
 import csv
 import sys
 
