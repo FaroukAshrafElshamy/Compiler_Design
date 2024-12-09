@@ -14,7 +14,7 @@
 
 <expression> ::= <identifier> | <literal>
 <literal> ::= <digit> | <string_literal>
-<string_literal> ::= "\"" <letter>* "\""
+<string_literal> ::= "\"" <letter> "\""
 
 <identifier> ::= <letter> { <all_list> }
 <all_list>::= <letter> | <digit> | "_",
