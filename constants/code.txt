@@ -9,14 +9,7 @@ if (num > 7):
 	x = 3
 else: 
 	num = 2
-<<<<<<< HEAD
 	
 x = 8
 
 z=3
-=======
-	x = 43
-
-age = num
-name = nikname
->>>>>>> 38f31931a3606f78dbafe359ecae978bbc0e2099
